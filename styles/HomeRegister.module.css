@@ -1,0 +1,44 @@
+.register {
+    margin-bottom: 140px;
+}
+
+.register .parent {
+    gap: 65px;
+    text-align: center;
+}
+
+.register .child {
+    background: #F3EBF3;
+    border-radius: 15px;
+    max-width: 663px;
+    width: 100%;
+    padding: 25px 20px 45px;
+}
+
+/* .register .child img {
+    margin-bottom: 20px;
+} */
+
+.register .child p {
+    font-weight: 600;
+    font-size: 32px;
+    line-height: 40px;
+    color: #333333;
+    margin-bottom: 30px;
+}
+
+.register .child button {
+    background: linear-gradient(111.23deg, #8B3888 36.01%, #CC8CDC 156%);
+    border-radius: 3px;
+    padding: 15px 42px;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 25px;
+    color: #FFFFFF;
+    border: none;
+    transition: 0.3s ease-in-out;
+}
+
+.register .child button:hover {
+    scale: .95;
+}

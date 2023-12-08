@@ -1,0 +1,72 @@
+.findNannyBanner {
+  background-color: rgba(168, 106, 183, 0.06);
+  border-radius: 9px;
+  margin-top: 40px;
+  padding-top: 30px;
+  padding-bottom: 45px;
+  text-align: center;
+}
+
+.findNannyBanner h3 {
+  font-style: normal;
+  font-weight: 600;
+  font-size: 32px;
+  line-height: 40px;
+  text-align: center;
+  color: #333333;
+  margin-bottom: 20px !important;
+}
+
+.findNannyBanner p {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 25px;
+  text-align: center;
+  color: #a86ab7;
+  max-width: 43ch;
+  margin: 0 auto !important;
+}
+
+.findNannyBanner h6 {
+  font-style: normal;
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 30px;
+  text-align: center;
+  color: #666666;
+  margin-top: 15px !important;
+}
+
+.instructionsContainer {
+  margin-top: 80px;
+  margin-bottom: 90px;
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  gap: 23px;
+}
+
+.button {
+  background: #8b3888;
+  border-radius: 7px;
+  color: white;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 25px;
+  color: #ffffff;
+  padding: 16px 36px;
+  margin-bottom: 118px;
+}
+
+.button:hover {
+  color: white;
+  background-color: #441843;
+  border-color: var(--bs-btn-hover-border-color);
+}
+
+@media only screen and (max-width: 688px) {
+  .instructionsContainer {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}

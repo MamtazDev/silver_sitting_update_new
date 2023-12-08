@@ -1,0 +1,54 @@
+.faqMainContainer {
+  margin-top: 90px;
+  margin-bottom: 221px;
+}
+
+.faqBanner {
+  background-image: url("../public/assets/images/faq-banner.png");
+  background-repeat: no-repeat;
+  max-width: 940px;
+  height: 334px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 70px;
+}
+
+.faqBanner div {
+  font-weight: 600;
+  font-size: 26px;
+  line-height: 150%;
+  text-align: center;
+  color: #8b3888;
+  padding: 70px 66px;
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(5px);
+  border-radius: 10px;
+}
+
+.accordionContainer {
+  margin-bottom: 20px !important;
+}
+
+.accordionContainer div {
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 26px;
+  color: rgba(34, 34, 34, 0.8);
+}
+
+.accordionContainer a {
+  color: #8b3888;
+  text-decoration: underline !important;
+}
+
+.accordionContainer h2 button {
+  font-weight: 500;
+  font-size: 26px;
+  line-height: 33px;
+  color: #333333;
+}
+.accordionContainer h2 button:hover {
+  scale: 1 !important;
+}

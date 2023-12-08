@@ -1,0 +1,15 @@
+.header .navbar-nav {
+  background-color: #333333 !important;
+ }
+
+.header a {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 25px;
+  color: #333333;
+}
+
+.header .form-select {
+  background-color: var(--violet-accent);
+}

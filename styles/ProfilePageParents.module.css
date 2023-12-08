@@ -1,0 +1,95 @@
+.mainContainer {
+  margin-bottom: 140px;
+}
+.mainContainer h4 {
+  color: #8b3888;
+  text-align: center;
+  font-size: 42px;
+  margin-bottom: 40px;
+  font-weight: 600;
+}
+
+.description {
+  color: #666;
+  font-size: 20px;
+  line-height: 30px;
+  text-align: center;
+  margin-bottom: 70px;
+}
+
+.emailContainer {
+  border-radius: 10px;
+  border: 1px solid #8b3888;
+  padding: 25px 20px;
+}
+
+.emailContainer p {
+  margin-bottom: 0 !important;
+  color: #666;
+  font-size: 20px;
+  line-height: 35px;
+}
+
+.emailContainer span {
+  color: #8b3888;
+}
+
+.imageBox {
+  display: flex;
+  justify-content: center;
+  margin-top: 50px;
+}
+
+.imageMainContainer {
+  position: relative;
+}
+.userImageContainer {
+  width: 128px;
+  height: 128px;
+  border-radius: 128px;
+  border: 6px solid #fff;
+  box-shadow: 4px 4px 10px 0px rgba(17, 17, 18, 0.25);
+}
+
+.userImageContainer img {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+  border-radius: 100%;
+}
+.littleCamera {
+  position: absolute;
+  top: 20px;
+  right: -4px;
+  cursor: pointer;
+}
+.imageInputField {
+  display: none;
+}
+
+.inputContainer {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 30px;
+  margin-top: 50px;
+}
+
+.inputContainer input {
+  height: 60px;
+  border-radius: 7px;
+  border: 1px solid rgba(116, 116, 116, 0.3);
+  padding: 20px;
+}
+.inputContainer label {
+  margin-bottom: 13px;
+  color: #2e3331;
+  font-size: 14px;
+}
+
+.inputContainer span {
+  color: #ff0000;
+}
+
+.buttonContainer {
+  margin-top: 60px;
+}

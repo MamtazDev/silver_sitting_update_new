@@ -1,0 +1,35 @@
+.pobox {
+    border-radius: 9px;
+    background: rgba(139, 56, 136, 0.08);
+    padding: 30px 93px 30px 50px;
+    width: 100% !important;
+}
+
+.pobox h6 {
+    color: #8B3888;
+    font-size: 24px;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.pobox p {
+    color: #666;
+    font-size: 20px;
+}
+
+
+.nosms {
+    border-radius: 9px;
+    background: rgba(139, 56, 136, 0.08);
+    height: 350px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 30px;
+}
+
+.nosms h6 {
+    color: #8B3888;
+    font-size: 32px;
+    font-weight: 600;
+}

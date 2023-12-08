@@ -1,0 +1,381 @@
+.signInMainContainer {
+  margin-top: 169px;
+  margin-bottom: 278px;
+  display: flex;
+}
+
+.emptyContainer {
+  width: 15%;
+}
+
+#warning {
+  color: #222;
+  font-size: 12px;
+  line-height: 18px;
+  border-radius: 10px;
+  background: rgba(139, 56, 136, 0.1);
+  padding: 4px 9px;
+  transition: 0.3s ease-in;
+}
+
+.imageContainer {
+  width: 15%;
+}
+
+.imageContainer img {
+  object-fit: contain;
+}
+
+.mainRegisterContainer {
+  width: 70%;
+}
+
+.mainRegisterContainer form {
+  background: #ffffff;
+  box-shadow: 0px 1px 20px rgba(0, 0, 0, 0.1);
+  border-radius: 15px;
+  padding-top: 96px;
+  padding-left: 150px;
+  padding-right: 150px;
+  padding-bottom: 142px;
+  background-image: url("../public/assets/images/register-quote.png");
+  background-repeat: no-repeat;
+  background-position: bottom right;
+  position: relative;
+}
+
+.mainRegisterContainer form label {
+  font-weight: 300;
+  font-size: 20px;
+  line-height: 25px;
+  color: #222222;
+  display: block;
+  margin-bottom: 10px;
+}
+
+.mainRegisterContainer form label a {
+  color: #8b3888;
+  font-weight: 500;
+}
+
+.mainRegisterContainer form span {
+  color: #f10460;
+}
+
+.mainRegisterContainer form input {
+  border: 1px solid #dddddd;
+  border-radius: 7px;
+  height: 56px;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+.mainRegisterContainer h3 {
+  font-weight: 600;
+  font-size: 36px;
+  line-height: 25px;
+  color: #8b3888;
+  margin-bottom: 50px;
+  text-align: center;
+}
+
+.register1stSection {
+  background: #ffffff;
+  box-shadow: 0px 1px 20px rgba(0, 0, 0, 0.1);
+  border-radius: 15px;
+  padding: 96px 150px;
+  text-align: center;
+}
+
+.register1stSection h3 {
+  font-weight: 600;
+  font-size: 36px;
+  line-height: 45px;
+  color: #8b3888;
+  margin-bottom: 60px;
+}
+
+.register1stSection h6 {
+  font-weight: 600;
+  font-size: 32px;
+  line-height: 40px;
+  color: #333333;
+  margin-bottom: 40px;
+}
+
+.choosePersonContainer {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 74px;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+.choosePersonContainer input {
+  width: 25px;
+  height: 25px;
+  margin-top: 35px;
+  accent-color: #a86ab7;
+}
+
+.person {
+  background: #f3ebf3;
+  border-radius: 10px;
+  width: 244px;
+  height: 174px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.person p {
+  margin: 0;
+  padding: 0;
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 30px;
+  color: #8b3888;
+  margin-top: 15px;
+}
+
+.loginButtonContainer button {
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 25px;
+  color: #ffffff;
+  background: #8b3888;
+  border-radius: 7px;
+  padding: 16px 36px;
+}
+
+.loginButtonContainer button:hover {
+  background: #9b3095;
+  color: white;
+}
+
+.twoInputContainer {
+  display: flex;
+  gap: 20px;
+}
+
+.checkboxContainer {
+  margin-bottom: 70px;
+}
+
+.checkboxContainer label {
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 25px;
+  color: #666666 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.checkboxContainer input {
+  margin: 0 !important;
+  padding: 0 !important;
+  width: 17px;
+  height: 17px;
+}
+
+.checkboxContainer p {
+  margin: 0 !important;
+  padding: 0 !important;
+  color: #8b3888;
+  display: inline;
+}
+
+.checkboxs {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.quoteText {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 32px;
+  text-align: center;
+  color: #ffffff;
+  position: absolute;
+  width: 20ch;
+  right: 34px;
+  bottom: 56px;
+}
+
+.quoteText a {
+  color: white;
+  text-decoration: underline !important;
+  margin-left: 2px;
+}
+
+.lightImage {
+  position: absolute;
+  bottom: 193px;
+  right: 105px;
+}
+
+/* register success sms part */
+.success {
+  border-radius: 15px;
+  background: #faf6fb;
+  padding: 106px 30px;
+  text-align: center;
+  margin: 90px auto 140px;
+}
+
+.success img {
+  margin-bottom: 20px;
+  max-width: 484px;
+  width: 100%;
+}
+
+.success h6 {
+  color: #8b3888;
+  font-size: 32px;
+  font-weight: 600;
+  line-height: 140%;
+  margin-bottom: 30px;
+}
+
+.success p {
+  color: #333;
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 140%;
+}
+
+.success span {
+  font-weight: 700;
+}
+
+.success a {
+  color: #8b3888;
+  font-weight: 600;
+}
+
+.genderInputContainer {
+  display: flex;
+  gap: 130px;
+  margin-top: 20px;
+}
+
+.genderInputContainer div {
+  display: flex;
+  gap: 15px;
+  align-items: center !important;
+}
+
+.genderInputContainer input {
+  accent-color: #a86ab7;
+  width: 21px;
+  height: 21px;
+  margin-bottom: none !important;
+}
+
+.genderInputContainer label {
+  margin-bottom: none !important;
+}
+
+@media only screen and (max-width: 1024px) {
+  .emptyContainer {
+    width: 10%;
+  }
+
+  .mainRegisterContainer {
+    width: 80%;
+  }
+
+  .mainRegisterContainer form {
+    padding-left: 50px;
+    padding-right: 50px;
+  }
+}
+
+@media only screen and (min-width: 689px) and (max-width: 992px) {
+  .emptyContainer {
+    display: none;
+  }
+
+  .mainRegisterContainer {
+    width: 100%;
+  }
+
+  .register1stSection {
+    padding: 50px 50px;
+  }
+
+  .imageContainer {
+    display: none;
+  }
+}
+
+@media only screen and (max-width: 688px) {
+  .mainRegisterContainer form {
+    background-size: 38%;
+  }
+
+  .emptyContainer {
+    display: none;
+  }
+
+  .mainRegisterContainer {
+    width: 100%;
+  }
+
+  .register1stSection {
+    padding: 50px 50px;
+  }
+
+  .imageContainer {
+    display: none;
+  }
+
+  .twoInputContainer {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .twoInputContainer div {
+    width: 100% !important;
+  }
+
+  .quoteText {
+    font-weight: 400;
+    font-size: 8px;
+    line-height: 15px;
+    position: absolute;
+    width: 20ch;
+    right: 28px;
+    bottom: 35px;
+  }
+
+  .lightImage {
+    position: absolute;
+    bottom: 100px;
+    right: 50px;
+  }
+
+  .lightImage img {
+    width: 50%;
+  }
+}
+
+@media only screen and (width: 320px) {
+  .quoteText {
+    font-size: 6px;
+    bottom: 20px;
+    right: 10px;
+  }
+
+  .lightImage {
+    bottom: 80px;
+    right: 10px;
+  }
+
+  .lightImage img {
+    width: 50%;
+  }
+}

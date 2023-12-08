@@ -1,0 +1,49 @@
+TODO: 
+
+Backend 
+    User authintication flow -> user CRUD, change pass, forgot pass, email verification, OTP (optional), profile
+    Backend cache 
+    Chat Functionalities
+    Search filtering using google api, Locaiton track ***   
+    File upload system - AWS / Cloudnary
+    Contact system 
+    Blog
+
+
+
+Model/ Controller
+    Auth Model
+    Contact Model
+    Chat Functionalities Model
+    Blog API ( like/dislike, Comment, Feature blog, share on social media )
+    Share Functionalities
+
+
+
+Frontend 
+    User authintication flow
+    Duel Language feature 
+    State Management using React Toolkit 
+    API Secure / cache 
+    Chat Functionalities
+    Search filtering using google api, Locaiton track ***   
+    UI secure and optimization 
+    File upload system
+    Contact system
+    Blog
+    Insystem database (without main server)
+
+
+
+Frontend - Update
+
+    errr handeling
+    performance 
+    code optimization (spliting)
+    image CDN
+
+    bug
+        header
+        side scrolling
+        smooth scrolling
+        

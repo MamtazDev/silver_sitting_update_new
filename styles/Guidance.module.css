@@ -1,0 +1,73 @@
+.guidance_banner {
+    background: rgba(168, 106, 183, 0.06);
+    border-radius: 10px;
+    padding: 30px;
+    text-align: center;
+    margin: 40px 0 60px;
+}
+
+.guidance_banner h4 {
+    font-weight: 600;
+    font-size: 32px;
+    line-height: 40px;
+    color: #333333;
+    margin-bottom: 20px;
+}
+
+.guidance_banner p {
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 25px;
+    color: #A86AB7;
+    margin-bottom: 15px;
+
+}
+
+.guidance_banner h6 {
+    font-weight: 600;
+    font-size: 24px;
+    line-height: 30px;
+    text-align: center;
+    color: #666666;
+
+}
+
+.Childcare_worker {
+    margin-bottom: 240px;
+}
+
+.Childcare_worker h4 {
+    font-weight: 600;
+    font-size: 32px;
+    line-height: 40px;
+    color: #333333;
+    margin-bottom: 60px;
+}
+
+.Childcare_worker p {
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 150%;
+    color: #666666;
+    margin-bottom: 40px;
+}
+
+.Childcare_worker a {
+    color: #8B3888;
+    text-decoration: underline !important;
+}
+
+
+
+.Childcare_worker span {
+    font-weight: 600;
+
+
+}
+
+
+@media screen and (max-width: 767px) {
+    .Childcare_worker {
+        margin-bottom: 50px;
+    }
+}

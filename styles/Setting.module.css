@@ -1,0 +1,136 @@
+.mainContainer {
+  margin-top: 65px;
+}
+
+.mainContainer h3 {
+  color: #8b3888;
+  text-align: center;
+  font-size: 42px;
+  font-weight: 600;
+  line-height: normal;
+  margin-bottom: 15px;
+}
+
+.mainContentContainer {
+  display: flex;
+  gap: 16px;
+  flex-direction: row;
+}
+
+.fileContainer {
+  padding: 42px;
+  border-radius: 5px;
+  background-color: #fcf9fc;
+  width: 50%;
+}
+
+.fileContainer p {
+  color: #333;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 28px;
+}
+
+.fileContainer button {
+  width: 100%;
+  border-radius: 7px;
+  background: #8b3888;
+  border: unset;
+  padding: 16px 24px;
+
+  color: #fff;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+
+  margin-top: 25px;
+  margin-bottom: 15px;
+}
+
+.fileContainer input {
+  display: none;
+}
+
+.fileContainer span {
+  color: rgba(102, 102, 102, 0.7);
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 32px;
+}
+.checkboxContainer {
+  padding: 42px;
+  border-radius: 5px;
+  background-color: #fcf9fc;
+  width: 50%;
+
+  position: relative;
+}
+
+.checkboxContainer button {
+  border-radius: 7px;
+  background: #8b3888;
+  border: unset;
+  padding: 16px 24px;
+
+  color: #fff;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+
+  margin-top: 25px;
+  margin-bottom: 15px;
+}
+
+.checkBox_Box {
+  display: flex;
+  gap: 15px;
+  align-items: flex-start;
+}
+
+.checkBox_Box input {
+  width: 21px;
+  height: 21px;
+  accent-color: #a86ab7;
+  margin-top: 2px;
+}
+
+.checkBox_Box label {
+  color: #666;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 26px;
+}
+
+.checkBox_Box img {
+  object-fit: contain;
+  margin-top: 5px;
+}
+
+.labelTextContainer {
+  border-radius: 10px;
+  background: rgba(139, 56, 136, 0.1);
+  padding: 9px;
+
+  color: #222;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 18px;
+
+  position: absolute;
+  top: 86px;
+  left: 320px;
+  width: 320px;
+  height: 90px;
+}
+
+@media only screen and (max-width: 688px) {
+  .mainContentContainer {
+    flex-direction: column;
+  }
+}

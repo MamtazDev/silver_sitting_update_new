@@ -1,0 +1,118 @@
+/* .icons {
+  width: 99px;
+  height: 99px;
+  background-color: rgba(168, 106, 183, 0.5);
+  border-radius: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.cardContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  padding: 44px 36px;
+  background-color: rgba(254, 249, 255, 0.9);
+  border-radius: 15px;
+}
+.cardContainer .icons {
+  margin: 0 auto;
+}
+
+.cardContainer h6 {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 32px;
+  line-height: 40px;
+  text-align: center;
+  color: #8b3888;
+}
+
+.cardContainer p {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 32px;
+  text-align: center;
+  color: #666666;
+} */
+
+.mainCardContainer {
+  display: flex;
+  align-items: center;
+}
+
+.allContentContainer {
+  padding: 60px 40px;
+  background-color: rgba(168, 106, 183, 0.06);
+  /* max-height: 204px; */
+  width: 100%;
+  border-radius: 0px 10px 10px 0px;
+}
+
+.countNumber {
+  width: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #8b3888;
+  height: 100%;
+  border-radius: 10px 0px 0px 10px;
+
+  font-weight: 500;
+  font-size: 42px;
+  line-height: 53px;
+  text-align: center;
+  color: #ffffff;
+}
+.contentText {
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 32px;
+  color: #666666;
+  margin-top: 10px !important;
+  margin-bottom: 0 !important;
+}
+
+.headline {
+  display: flex;
+  gap: 15px;
+}
+
+.headline div {
+  width: 40px;
+  height: 40px;
+  background-color: #8b3888;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 25px;
+  color: #ffffff;
+}
+
+.headline p {
+  font-weight: 500;
+  font-size: 32px;
+  line-height: 40px;
+  text-align: center;
+  color: #8b3888;
+  margin: 0 !important;
+}
+
+@media only screen and (max-width: 688px) {
+  .mainCardContainer {
+    flex-direction: column;
+  }
+  .countNumber {
+    width: 100%;
+    height: 90px;
+    border-radius: 10px 10px 0px 0px;
+  }
+  .allContentContainer {
+    border-radius: 0px 0px 10px 10px;
+  }
+}

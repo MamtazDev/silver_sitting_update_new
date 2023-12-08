@@ -1,0 +1,32 @@
+.imprint {
+    max-width: 939px;
+    margin: 110px auto 140px;
+    padding: 60px;
+    background: #FCF9FC;
+}
+
+.imprint h6 {
+    color: #333;
+    font-size: 24px;
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+
+.imprint p {
+    color: #333;
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.imprint h3 {
+    color: #8B3888;
+    font-size: 24px;
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+
+.imprint a {
+    color: #8B3888;
+    font-size: 24px;
+    text-decoration-line: underline !important;
+}

@@ -1,0 +1,42 @@
+.logout {
+    max-width: 806px;
+    margin: 98px auto 242px;
+    background: #FFFFFF;
+    box-shadow: 0px 1px 20px rgba(0, 0, 0, 0.1);
+    border-radius: 15px;
+    padding: 66px 30px 109px;
+}
+
+.logout img {
+    margin-bottom: 20px;
+}
+
+.logout h4 {
+    font-weight: 500;
+    font-size: 32px;
+    line-height: 40px;
+    text-align: center;
+    color: #222222;
+    margin-bottom: 28px;
+}
+
+.logout .yes_btn {
+    background: #8B3888;
+    border-radius: 7px;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 25px;
+    padding: 17px 50px;
+    color: #FFFFFF;
+    border: none;
+}
+.logout .no_btn {
+    background: #EBEBEB;
+    border-radius: 7px;
+    padding: 17px 50px;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 25px;
+    color: rgba(115, 115, 123, 0.8);
+    border: none;
+}

@@ -1,0 +1,28 @@
+.Pagination {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.Pagination div {
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 25px;
+  color: #666666;
+  width: 31px;
+  height: 31px;
+  border-radius: 100%;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.activePage {
+  color: white !important;
+  background-color: #8b3888;
+}
+
+.activeLeftArrow {
+  transform: rotate(180deg);
+}

@@ -1,0 +1,370 @@
+.blog_tab {
+  display: flex;
+  max-width: 740px;
+  margin: 60px auto 128px;
+  overflow-x: scroll;
+  justify-content: center;
+}
+
+.blog_tab::-webkit-scrollbar {
+  display: none !important;
+}
+
+.blog_tab button.deactivate {
+  background: rgba(246, 239, 245, 0.57);
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 25px;
+  color: #666666;
+  border: none;
+  padding: 15px 22px;
+  position: relative;
+  white-space: nowrap;
+  /* transition: 0.3s ease-in-out; */
+}
+
+.blog_tab button.deactivate::after {
+  position: absolute;
+  content: "";
+  width: 1px;
+  height: 28px;
+  background-color: #dddddd;
+  right: 0;
+}
+
+.blog_tab button.active {
+  background: #a86ab7;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 25px;
+  color: #ffffff;
+  border: none;
+  padding: 15px 22px;
+  z-index: 9999;
+  white-space: nowrap;
+}
+
+.blog_tab button.deactivate:last-child {
+  border-bottom-left-radius: 3px;
+  border-top-left-radius: 3px;
+}
+
+.blog_tab button.deactivate:last-child::after {
+  position: absolute;
+  content: "";
+  width: 1px;
+  height: 28px;
+  background-color: transparent;
+  right: 0;
+}
+
+.blog_tab button.deactivate:last-child {
+  border-right: none;
+  border-bottom-right-radius: 3px;
+  border-top-right-radius: 3px;
+}
+
+.blog {
+  position: relative;
+}
+
+.blog .date {
+  background: linear-gradient(131.5deg, #a86ab7 -6.63%, #8b3888 105.15%);
+  border-radius: 5px;
+  padding: 7px 4px;
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  text-align: center;
+}
+
+.blog .date h5 {
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 23px;
+  color: #ffffff;
+}
+
+.blog .date p {
+  font-weight: 400;
+  font-size: 10px;
+  line-height: 13px;
+  text-align: center;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.blog .blog_content {
+  position: absolute;
+  background: #ffffff;
+  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.04);
+  border-radius: 9px;
+  padding: 26px 17px 42px 20px;
+  margin: 0 25px;
+  top: 85%;
+}
+
+.blog .blog_content h4 {
+  font-style: normal;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 25px;
+  color: #333333;
+  margin-bottom: 14px !important;
+}
+
+.blog .blog_content h6 {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 20px;
+  color: #666666;
+  margin-bottom: 20px !important;
+}
+
+.blog .blog_content a {
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 20px;
+  color: #a86ab7;
+}
+
+/* blog details css */
+
+.current_post h4 {
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 32px;
+  color: #333333;
+}
+
+.current_post button {
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 25px;
+  text-align: right;
+  color: #666666;
+  background-color: transparent;
+  border: none;
+}
+
+.comments {
+  background: rgba(168, 106, 183, 0.06);
+  border-radius: 15px;
+  padding: 75px 100px;
+  margin-bottom: 150px;
+}
+
+.comments h4 {
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 25px;
+  color: #333333;
+  margin-bottom: 30px;
+}
+
+.comments input {
+  width: 100%;
+  background: #ffffff;
+  border-radius: 10px;
+  padding: 37px 30px;
+  border: none;
+  margin-bottom: 40px;
+}
+
+.comments input::placeholder {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 18px;
+  color: #666666;
+}
+
+.comments button {
+  background: #8b3888;
+  border-radius: 7px;
+  padding: 16px 36px;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 25px;
+  color: #ffffff;
+  border: none;
+  transition: 0.3s ease-out;
+}
+
+.social_media {
+  border-top: 1px solid #dddddd;
+  border-bottom: 1px solid #dddddd;
+  padding: 30px 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 60px;
+}
+
+.social_media p {
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 25px;
+  text-align: right;
+  color: #666666;
+}
+
+.social_media img {
+  margin-right: 45px;
+}
+
+/* .types_tab {} */
+
+.tabs {
+  max-width: 1280;
+  margin: 0 auto;
+  display: flex;
+  gap: 20px;
+  overflow-x: scroll;
+  margin-bottom: 50px;
+}
+
+.tabs::-webkit-scrollbar {
+  display: none !important;
+}
+
+.tabs a {
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 25px;
+  color: #666666;
+  background: rgba(246, 239, 245, 0.65);
+  border-radius: 3px;
+  padding: 23px 44px;
+  white-space: nowrap;
+}
+
+.study {
+  margin-bottom: 90px;
+}
+
+.study h4 {
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 32px;
+  color: #333333;
+  margin-bottom: 30px;
+}
+
+.study a {
+  color: #a86ab7;
+}
+
+.study p {
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 32px;
+  color: #666666;
+  margin-bottom: 35px;
+}
+
+.study p a {
+  text-decoration: underline !important;
+}
+
+.study p span {
+  color: #333333;
+  font-weight: 500;
+}
+
+.pocket_guide {
+  text-align: center;
+  margin-bottom: 132px;
+}
+
+.pocket_guide p {
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 32px;
+  color: #222222;
+  margin-bottom: 60px;
+}
+
+.pocket_guide p a {
+  color: #a86ab7;
+  text-decoration: underline !important;
+}
+
+.chancellor_speech {
+  margin-bottom: 90px;
+  text-align: center;
+}
+
+.chancellor_speech h4 {
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 25px;
+  color: #222222;
+  margin-bottom: 30px;
+}
+
+.speech {
+  background: rgba(168, 106, 183, 0.06);
+  border-radius: 10px;
+  padding: 50px 171px;
+}
+
+.speech p {
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 32px;
+  color: rgba(34, 34, 34, 0.8);
+}
+
+.blog_details {
+  margin-top: 70px;
+  margin-bottom: 90px;
+}
+
+.blog_details h6 {
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 23px;
+  color: #666666;
+}
+
+.blog_details h4 {
+  font-weight: 600;
+  font-size: 42px;
+  line-height: 53px;
+  color: #333333;
+  margin-bottom: 30px;
+}
+
+.blog_details p {
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 32px;
+  color: #666666;
+}
+
+.textLineLimit {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+  -webkit-box-orient: vertical;
+}
+
+@media screen and (max-width: 991px) {
+  .social_media {
+    justify-content: center;
+  }
+  .comments {
+    padding: 30px;
+  }
+
+  .comments input {
+    padding: 15px;
+  }
+
+  .speech {
+    padding: 30px;
+  }
+}

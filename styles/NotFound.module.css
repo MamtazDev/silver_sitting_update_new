@@ -1,0 +1,41 @@
+.mainContainer {
+  margin-top: 40px;
+  margin-bottom: 140px;
+  text-align: center;
+}
+
+.mainContainer h2 {
+  color: #8b3888;
+  text-align: center;
+  font-size: 64px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+
+  margin-top: 40px;
+  margin-bottom: 40px;
+}
+
+.mainContainer p {
+  color: #666;
+  text-align: center;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 30px;
+
+  margin-bottom: 30px;
+}
+
+.mainContainer button {
+  padding: 16px 36px;
+  border-radius: 7px;
+  background: #8b3888;
+  border: unset;
+
+  color: #fff;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}

@@ -1,0 +1,232 @@
+.mainContainer h4 {
+  color: #8b3888;
+  text-align: center;
+  font-size: 42px;
+  font-weight: 600;
+  margin-bottom: 40px;
+}
+
+.mainContainer {
+  margin-bottom: 140px;
+}
+
+.description {
+  color: #666;
+  font-size: 20px;
+  line-height: 30px;
+}
+
+.informationContainer {
+  border-radius: 10px;
+  border: 1px solid #8b3888;
+  padding: 25px 20px;
+}
+
+.informationContainer span {
+  color: #666;
+  font-size: 16px;
+  font-weight: 300;
+}
+
+.informationContainer p {
+  color: #666;
+  font-size: 20px;
+  line-height: 35px;
+}
+
+.informationContainer p span {
+  color: #8b3888;
+  font-size: 20px;
+  line-height: 35px;
+}
+
+.imageBox {
+  display: flex;
+  justify-content: center;
+  margin-top: 50px;
+}
+
+.imageMainContainer {
+  position: relative;
+}
+.userImageContainer {
+  width: 128px;
+  height: 128px;
+  border-radius: 128px;
+  border: 6px solid #fff;
+  box-shadow: 4px 4px 10px 0px rgba(17, 17, 18, 0.25);
+}
+
+.userImageContainer img {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+  border-radius: 100%;
+}
+.littleCamera {
+  position: absolute;
+  top: 20px;
+  right: -4px;
+  cursor: pointer;
+}
+.imageInputField {
+  display: none;
+}
+
+.inputContainer {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 30px;
+  margin-top: 50px;
+}
+
+.inputContainer input {
+  height: 60px;
+  border-radius: 7px;
+  border: 1px solid rgba(116, 116, 116, 0.3);
+  padding: 20px;
+}
+.inputContainer label {
+  margin-bottom: 13px;
+  color: #2e3331;
+  font-size: 14px;
+}
+
+.inputContainer span {
+  color: #ff0000;
+}
+
+.checkboxInputContainer {
+  margin-top: 50px;
+}
+
+.checkboxInputContainer h5 {
+  color: #333;
+  font-size: 24px;
+  font-weight: 500;
+  margin-bottom: 60px;
+}
+.genderInputContainer {
+  display: flex;
+  gap: 130px;
+  margin-top: 20px;
+}
+
+.genderInputContainer div {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+}
+
+.genderInputContainer input {
+  accent-color: #a86ab7;
+  width: 21px;
+  height: 21px;
+}
+
+.checkboxInputContainer label {
+  color: #222;
+  font-size: 20px;
+}
+.checkboxInputContainer span {
+  color: #ff0000;
+}
+
+.availabilityInputContainer {
+  display: flex;
+  gap: 80px;
+  margin-top: 20px;
+}
+
+.availabilityInputContainer div {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+}
+
+.availabilityInputContainer input {
+  accent-color: #a86ab7;
+  width: 21px;
+  height: 21px;
+}
+.youOfferInputContainer {
+  margin-top: 20px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  row-gap: 20px;
+}
+
+.youOfferInputContainer div {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+}
+
+.youOfferInputContainer input {
+  accent-color: #a86ab7;
+  width: 21px;
+  height: 21px;
+}
+
+.aboutYouContainer {
+  margin-top: 50px;
+}
+
+.aboutYouContainer h5 {
+  color: #8b3888;
+  font-size: 32px;
+  font-weight: 500;
+  margin-bottom: 30px;
+}
+
+.aboutYouContainer p {
+  color: #666;
+  font-size: 20px;
+  line-height: 30px;
+  margin-bottom: 30px;
+}
+
+.aboutYouContainer span {
+  color: #333333;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.aboutYouContainer label {
+  color: #666666;
+  font-weight: 300;
+}
+
+.star {
+  color: #ff0000 !important;
+}
+
+.textArea {
+  margin-top: 15px;
+  height: 236px;
+  padding: 20px;
+  border-radius: 10px;
+  border: 1px solid #8b3888;
+  resize: none;
+}
+
+.textArea:focus-visible {
+  outline: none;
+}
+
+@media screen and (max-width: 767px) {
+  .inputContainer {
+    grid-template-columns: repeat(1, 1fr);
+  }
+  .youOfferInputContainer {
+    grid-template-columns: repeat(1, 1fr);
+  }
+  .availabilityInputContainer {
+    flex-direction: column;
+    gap: 25px;
+  }
+  .genderInputContainer {
+    flex-direction: column;
+    gap: 25px;
+  }
+}

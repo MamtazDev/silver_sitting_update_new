@@ -1,0 +1,42 @@
+.how_works {
+    background: rgba(169, 94, 174, 0.8);
+    padding: 100px 0 144px;
+    margin-bottom: 126px;
+}
+
+.how_works h2 {
+    font-weight: 600;
+    font-size: 42px;
+    line-height: 53px;
+    text-align: center;
+    text-transform: capitalize;
+    color: #FFFFFF;
+    margin-bottom: 87px;
+}
+
+.how_works .parent {
+    gap: 54px !important;
+}
+
+.how_works .child {
+    background: #FFFFFF;
+    border-radius: 20px;
+    padding: 45px 21px 24px 40px;
+    max-width: 394px;
+    width: 100%;
+}
+
+.how_works .child h1 {
+    font-weight: 600;
+    font-size: 104px;
+    line-height: 131px;
+    color: rgba(204, 140, 220, 0.3);
+    margin-bottom: 7px;
+}
+
+.how_works .child p {
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 30px;
+    color: #666666;
+}
