@@ -15,6 +15,7 @@ export const blogApi = apiSlice.injectEndpoints({
     }),
     getBlogById: builder.query({
       query: (blogID) => `/api/blogs/${blogID}`,
+      providesTags: ["BlogDetails"],
     }),
     updateBlog: builder.mutation({
       query: ({ blogID, data }) => ({
@@ -22,7 +23,7 @@ export const blogApi = apiSlice.injectEndpoints({
         method: "PATCH",
         body: data,
       }),
-      invalidatesTags: ["Blogs"],
+      invalidatesTags: ["Blogs", "BlogDetails"],
     }),
     deleteBlog: builder.mutation({
       query: (blogID) => ({

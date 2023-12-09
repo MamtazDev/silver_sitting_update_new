@@ -18,6 +18,12 @@ const uploadBlogImage = async (data) => {
 };
 
 const AddBlogs = () => {
+  const inputStyle = {
+    border: "1px solid #dddddd",
+    borderRadius: "7px",
+    height: "56px",
+    padding: "20px",
+  };
   const { user } = useSelector((state) => state.register);
 
   const [createBlog, { isLoading }] = useCreateBlogMutation();
@@ -95,6 +101,7 @@ const AddBlogs = () => {
             className="w-100 p-2"
             placeholder="Enter blog title"
             name="title"
+            style={inputStyle}
             onChange={handleBlogContentChange}
           />
         </div>
@@ -142,6 +149,7 @@ const AddBlogs = () => {
           <div className="w-100">
             <h4>Category</h4>
             <select
+              style={inputStyle}
               className="w-100 p-2"
               name="category"
               onChange={handleBlogContentChange}
@@ -157,6 +165,7 @@ const AddBlogs = () => {
           <div className="w-100">
             <h4>Language</h4>
             <select
+              style={inputStyle}
               className="w-100 p-2"
               onChange={handleBlogContentChange}
               name="language"

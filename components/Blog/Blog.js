@@ -37,7 +37,7 @@ const Blog = ({ allBlogs }) => {
                     <p className="mb-0">{formatDate(index?.createdAt)[1]}</p>
                   </div>
 
-                  <div className={`${styles.blog_content}`}>
+                  <div className={`${styles.blog_content} h-100`}>
                     <div
                       style={{ marginBottom: "22px" }}
                       className="d-flex flex-wrap justify-content-between gap-4"
@@ -68,7 +68,7 @@ const Blog = ({ allBlogs }) => {
                       </div>
                     </div>
 
-                    <div className="d-flex flex-column h-100">
+                    <div className="d-flex flex-column ">
                       <h4>{index?.title ? index?.title : "New Title"}</h4>
                       <h6
                         className={`${styles.textLineLimit} flex-grow-1`}

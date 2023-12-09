@@ -211,7 +211,9 @@ const EditBlogPage = () => {
             style={{ minHeight: "150px" }}
             placeholder="Writre short description..."
             value={blogInfo?.description}
-            onChange={(e) => setBlogInfo({ ...blogInfo(e.target.value) })}
+            onChange={(e) =>
+              setBlogInfo({ ...blogInfo, description: e.target.value })
+            }
           />
         </div>
 
