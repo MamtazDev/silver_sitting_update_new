@@ -3,6 +3,7 @@ import { useCreateBlogMutation } from "@/features/blog/blogApi";
 import { useRouter } from "next/router";
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
+import Swal from "sweetalert2";
 
 const imageHostKey = "7378254be2fef904c69a0c05769ced22";
 const url = `https://api.imgbb.com/1/upload?key=${imageHostKey}`;
@@ -86,11 +87,20 @@ const AddBlogs = () => {
     const response = await createBlog(data);
     if (response?.data?.success) {
       setAddingBlog(false);
-      alert("Blog added successfully!");
+      // alert("Blog added successfully!");
+      Swal.fire({
+        title: "Succeed!",
+        text: "Blog added successfully!",
+        icon: "success",
+      });
       push("/blogs");
+    } else {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Something went wrong!",
+      });
     }
-
-    console.log(response, "fff");
   };
   return (
     <div className="container mx-auto my-5">

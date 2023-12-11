@@ -92,6 +92,13 @@ export const registerApi = apiSlice.injectEndpoints({
         body: data,
       }),
     }),
+    sendResendEmail: builder.mutation({
+      query: (data) => ({
+        url: `/api/users/resendEmail`,
+        method: "POST",
+        body: data,
+      }),
+    }),
   }),
 });
 
@@ -102,4 +109,5 @@ export const {
   useGetSingleUserQuery,
   useEditUserMutation,
   useUploadDocumentMutation,
+  useSendResendEmailMutation,
 } = registerApi;

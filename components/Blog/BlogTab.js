@@ -2,10 +2,13 @@ import React, { useEffect, useState } from "react";
 import styles from "@/styles/Blog.module.css";
 import Blog from "./Blog";
 import { useGetAllBlogsQuery } from "@/features/blog/blogApi";
+import { useTranslation } from "react-i18next";
 
 const BlogTab = () => {
   const [active, setActive] = useState("all");
   const [allBlogs, setAllBlogs] = useState([]);
+
+  const { i18n } = useTranslation();
 
   console.log(allBlogs, "gg");
 
@@ -32,18 +35,32 @@ const BlogTab = () => {
 
   const handleBlogsFilter = (blog) => {
     const Blogs = [...data?.data?.blogs];
-    const newBlogs = Blogs.filter((item) => item?.category === blog?.slug);
+    const language = i18n.language === "en" ? "english" : "german";
+    const languageFilteredBlogs = Blogs.filter((i) => i.language === language);
+    const newBlogs = languageFilteredBlogs.filter(
+      (item) => item?.category === blog?.slug
+    );
 
     if (blog?.slug === "all") {
-      setAllBlogs(Blogs);
+      setAllBlogs(languageFilteredBlogs);
     } else {
       setAllBlogs(newBlogs);
     }
     setActive(blog?.slug);
   };
+
+  console.log(allBlogs, "dd");
   useEffect(() => {
-    setAllBlogs(data?.data?.blogs);
-  }, [data]);
+    // setAllBlogs(data?.data?.blogs);
+    const fetchedBlogs = data?.data?.blogs;
+    if (i18n.language === "en" && fetchedBlogs) {
+      const englishBlogs = fetchedBlogs.filter((i) => i.language === "english");
+      setAllBlogs(englishBlogs);
+    } else if (i18n.language === "de" && fetchedBlogs) {
+      const germanBlogs = fetchedBlogs.filter((i) => i.language === "german");
+      setAllBlogs(germanBlogs);
+    }
+  }, [data, i18n.language]);
 
   // const token =
   //   "9e4769d0d6f7087336e46b08d65e145a5cca3ac64c096c1ddf341daf8f0cdea1e8cd96841136a099fad3fa9099b08d0d99cfa65462751ab557105585dec2744ac416ef3b5c0d98268384387f689253382f046b77bab794f7ddcfda761c93966965d73f3d4c15a564dae442d537b017a91d9d0b98158e156416c0a9516abda2d6";

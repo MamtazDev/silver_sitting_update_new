@@ -53,6 +53,7 @@ const ChildCare = () => {
     useGetSearchedChildCarerMutation();
 
   const handleLookFor = (value) => {
+    console.log(value, "jj");
     if (lookfor.includes(value)) {
       const newArray = lookfor.filter((i) => i !== value);
       setLookfor(newArray);
@@ -185,30 +186,39 @@ const ChildCare = () => {
                   <div
                     onClick={() => handleLookFor("Female")}
                     className={styles.checkBoxContainer}
+                    style={{ cursor: "pointer" }}
                   >
                     <input
-                      id="granny"
+                      // id="granny"
                       type="checkbox"
                       name="lookFor"
                       value="gg"
                       checked={lookfor.includes("Female")}
                       className={`me-2 ${styles.colorCheckBox}`}
+                      style={{ cursor: "pointer" }}
                     />
-                    <label htmlFor="granny">Granny</label>
+                    <label style={{ cursor: "pointer" }}>Granny</label>
                   </div>
                   <div
                     onClick={() => handleLookFor("Male")}
                     className={styles.checkBoxContainer}
+                    style={{ cursor: "pointer" }}
                   >
                     <input
-                      id="grandpa"
+                      // id="grandpa"
                       type="checkbox"
                       name="lookFor"
                       value="bb"
                       checked={lookfor.includes("Male")}
                       className={`me-2 ${styles.colorCheckBox}`}
+                      style={{ cursor: "pointer" }}
                     />
-                    <label htmlFor="grandpa">Grandpa</label>
+                    <label
+                      //  htmlFor="grandpa"
+                      style={{ cursor: "pointer" }}
+                    >
+                      Grandpa
+                    </label>
                   </div>
                 </div>
 
@@ -263,6 +273,7 @@ const ChildCare = () => {
                           onChange={(e) =>
                             handleOfferProvideValue(e.target.value)
                           }
+                          style={{ cursor: "pointer" }}
                         />
                         <label>
                           Classic child sitting (child age &gt; 1y.)
@@ -275,6 +286,7 @@ const ChildCare = () => {
                           onChange={(e) =>
                             handleOfferProvideValue(e.target.value)
                           }
+                          style={{ cursor: "pointer" }}
                         />
                         <label>
                           Classic child sitting (child age &gt; 4y.)
@@ -287,6 +299,7 @@ const ChildCare = () => {
                           onChange={(e) =>
                             handleOfferProvideValue(e.target.value)
                           }
+                          style={{ cursor: "pointer" }}
                         />
                         <label>Homework supervision 1. - 4. class</label>
                       </div>
@@ -297,6 +310,7 @@ const ChildCare = () => {
                           onChange={(e) =>
                             handleOfferProvideValue(e.target.value)
                           }
+                          style={{ cursor: "pointer" }}
                         />
                         <label>Homework supervision 5. - 7. class</label>
                       </div>
@@ -309,6 +323,7 @@ const ChildCare = () => {
                           onChange={(e) =>
                             handleOfferProvideValue(e.target.value)
                           }
+                          style={{ cursor: "pointer" }}
                         />
                         <label>Cook and bake</label>
                       </div>
@@ -319,6 +334,7 @@ const ChildCare = () => {
                           onChange={(e) =>
                             handleOfferProvideValue(e.target.value)
                           }
+                          style={{ cursor: "pointer" }}
                         />
                         <label>Pick up and delivery services</label>
                       </div>

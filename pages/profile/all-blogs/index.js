@@ -22,6 +22,10 @@ const AllBlogsPage = () => {
     push(`/blogs/edit/${id}`);
   };
 
+  const handleView = (id) => {
+    push(`/blogs/details/${id}`);
+  };
+
   const handleDelete = async (id) => {
     Swal.fire({
       title: "Are you sure?",
@@ -75,17 +79,23 @@ const AllBlogsPage = () => {
                 <td>{formatDate(item?.createdAt)}</td>
                 <td>
                   <div className="d-flex gap-1">
-                    <button
+                    {/* <button
                       className="btn btn-primary btn-sm"
                       onClick={() => handleEdit(item?._id)}
                     >
                       Edit
-                    </button>
+                    </button> */}
                     <button
                       className="btn btn-danger btn-sm"
                       onClick={() => handleDelete(item?._id)}
                     >
                       Delete
+                    </button>
+                    <button
+                      className="btn btn-secondary btn-sm"
+                      onClick={() => handleView(item?._id)}
+                    >
+                      View
                     </button>
                   </div>
                 </td>

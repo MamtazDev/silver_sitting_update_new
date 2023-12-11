@@ -54,7 +54,7 @@ const SideBar = () => {
             </Link>
           </li>
         )}
-        <li className={pathName == "/profile/change-password" && styles.active}>
+        {/* <li className={pathName == "/profile/change-password" && styles.active}>
           {" "}
           <Link href="/profile/change-password">
             <img
@@ -67,7 +67,7 @@ const SideBar = () => {
             />{" "}
             Change password
           </Link>
-        </li>
+        </li> */}
         {user?.role === "admin" && (
           <>
             <li>

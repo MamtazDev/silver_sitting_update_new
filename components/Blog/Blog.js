@@ -10,7 +10,6 @@ import Link from "next/link";
 import { formatDate } from "@/utils/utils";
 
 const Blog = ({ allBlogs }) => {
-  console.log(allBlogs, "kjkj");
   return (
     <div style={{ marginBottom: "30px" }}>
       <div className="container">
@@ -48,13 +47,16 @@ const Blog = ({ allBlogs }) => {
                           <p className="mb-0">Daniel Monninger</p>
                         </div>
                       </div>
-                      <div>
-                        <div className="d-flex align-items-center gap-1">
+                      {/* <div>
+                        <div
+                          className="d-flex align-items-center gap-1"
+                          style={{ cursor: "pointer" }}
+                        >
                           <img src={share.src} alt="" />
                           <p className="mb-0">Share</p>
                         </div>
-                      </div>
-                      <div>
+                      </div> */}
+                      {/* <div>
                         <div className="d-flex align-items-center gap-1">
                           <img src={comment.src} alt="" />
                           <p className="mb-0">0</p>
@@ -65,7 +67,7 @@ const Blog = ({ allBlogs }) => {
                           <img src={like.src} alt="" />
                           <p className="mb-0">0</p>
                         </div>
-                      </div>
+                      </div> */}
                     </div>
 
                     <div className="d-flex flex-column ">

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "@/styles/Register.module.css";
 import parents from "../public/assets/icons/register-parent.png";
 import grandma from "../public/assets/icons/register-grandma.png";
@@ -10,10 +10,14 @@ import Link from "next/link";
 import sms from "../public/assets/success-sms.png";
 import { useDispatch, useSelector } from "react-redux";
 import { setRole, setStepControll } from "@/features/register/registerSlice";
-import { useRegisterMutation } from "@/features/register/registerApi";
+import {
+  useRegisterMutation,
+  useSendResendEmailMutation,
+} from "@/features/register/registerApi";
 import loadingGif from "../public/assets/loading.svg";
 import { useTranslation } from "react-i18next";
 import translations from "@/utils/translation";
+import Swal from "sweetalert2";
 
 const Register = () => {
   const { i18n } = useTranslation();
@@ -35,6 +39,7 @@ const Register = () => {
   const [privacy, setPrivacy] = useState(false);
   const [errors, setError] = useState("");
   const [gender, setGender] = useState();
+  const [resendEmail, setResendEmail] = useState("");
 
   const scrollToTop = () => {
     window.scrollTo(0, 0);
@@ -56,12 +61,53 @@ const Register = () => {
     }
   };
 
+  const [countdown, setCountdown] = useState(60);
+  const [isResendAllowed, setIsResendAllowed] = useState(true);
+
+  useEffect(() => {
+    let interval;
+
+    if (countdown > 0 && !isResendAllowed) {
+      interval = setInterval(() => {
+        setCountdown((prevCountdown) => prevCountdown - 1);
+      }, 1000);
+    } else {
+      clearInterval(interval);
+      setIsResendAllowed(true);
+    }
+
+    return () => clearInterval(interval);
+  }, [countdown, isResendAllowed]);
+
   const checkMatchedPassword = (password, rePassword) => {
     return password === rePassword;
   };
 
   const [register, { isLoading, isSuccess, isError, error, data }] =
     useRegisterMutation();
+
+  const [sendResendEmail, { isLoading: sendingEmail }] =
+    useSendResendEmailMutation();
+
+  const handleResendLink = async () => {
+    const response = await sendResendEmail({ email: resendEmail });
+
+    if (response?.data?.success) {
+      Swal.fire({
+        title: "Sent!",
+        text: "Activation Link is sent to your email successfully!.",
+        icon: "success",
+      });
+      setIsResendAllowed(false);
+      setCountdown(60);
+    } else {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Something went wrong!",
+      });
+    }
+  };
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -136,6 +182,7 @@ const Register = () => {
             };
             register(data).then((res) => {
               if (res.data?.status === 200) {
+                setResendEmail(email);
                 setError("");
                 dispatch(setStepControll());
                 scrollToTop();
@@ -450,6 +497,24 @@ const Register = () => {
                 </Link>{" "}
                 can be a word with a blue background that can be clicked on.
               </p>
+              {isResendAllowed ? (
+                <button
+                  className="btn"
+                  style={{ background: "#8b3888", color: "#FFF" }}
+                  onClick={handleResendLink}
+                  disabled={sendingEmail}
+                >
+                  {sendingEmail ? "Sending..." : "Resend Activation Link"}
+                </button>
+              ) : (
+                <p>
+                  Activation link sent. Resend in{" "}
+                  <span style={{ color: "#8b3888", fontSize: "24px" }}>
+                    {countdown}
+                  </span>{" "}
+                  seconds.
+                </p>
+              )}
             </div>
           )}
         </div>

@@ -58,24 +58,27 @@ const CurrentPosts = () => {
                           <p className="mb-0">Daniel Monninger</p>
                         </div>
                       </div>
-                      <div>
-                        <div className="d-flex align-items-center gap-1">
+                      {/* <div>
+                        <div
+                          className="d-flex align-items-center gap-1"
+                          style={{ cursor: "pointer" }}
+                        >
                           <img src={share.src} alt="" />
                           <p className="mb-0">Share</p>
                         </div>
-                      </div>
-                      <div>
+                      </div> */}
+                      {/* <div>
                         <div className="d-flex align-items-center gap-1">
                           <img src={comment.src} alt="" />
                           <p className="mb-0">0</p>
                         </div>
-                      </div>
-                      <div>
+                      </div> */}
+                      {/* <div>
                         <div className="d-flex align-items-center gap-1">
                           <img src={like.src} alt="" />
                           <p className="mb-0">0</p>
                         </div>
-                      </div>
+                      </div> */}
                     </div>
                     <h4>{index?.title ? index?.title : "New Title"}</h4>
                     <h6
