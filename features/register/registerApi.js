@@ -6,6 +6,14 @@ export const registerApi = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
     getAllUsers: builder.query({
       query: () => "/api/users",
+      providesTags: ["Users"],
+    }),
+    deleteUser: builder.mutation({
+      query: (id) => ({
+        url: `/api/users/delete/${id}`,
+        method: "DELETE",
+      }),
+      invalidatesTags: ["Users"],
     }),
 
     register: builder.mutation({
@@ -110,4 +118,5 @@ export const {
   useEditUserMutation,
   useUploadDocumentMutation,
   useSendResendEmailMutation,
+  useDeleteUserMutation,
 } = registerApi;

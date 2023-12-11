@@ -26,6 +26,10 @@ const AllBlogsPage = () => {
     push(`/blogs/details/${id}`);
   };
 
+  const handleAddBlog = () => {
+    push("/blogs/add");
+  };
+
   const handleDelete = async (id) => {
     Swal.fire({
       title: "Are you sure?",
@@ -59,6 +63,11 @@ const AllBlogsPage = () => {
 
   return (
     <div>
+      <div className="d-flex justify-content-end mb-4">
+        <button onClick={handleAddBlog} className="btn btn-primary">
+          Add Blog
+        </button>
+      </div>
       <table class="table">
         <thead>
           <tr>

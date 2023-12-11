@@ -70,9 +70,25 @@ const SideBar = () => {
         </li> */}
         {user?.role === "admin" && (
           <>
-            <li>
-              <Link href="/blogs/add">
-                <img src={password.src} alt="" /> Add Blog
+            <li className={pathName == "/profile/all-users" && styles.active}>
+              <Link href="/profile/all-users">
+                <img src={password.src} alt="" /> All Users
+              </Link>
+            </li>
+            <li
+              className={pathName == "/profile/all-feedbacks" && styles.active}
+            >
+              <Link href="/profile/all-feedbacks">
+                <img src={password.src} alt="" /> All Feedbacks
+              </Link>
+            </li>
+            <li
+              className={
+                pathName == "/profile/all-contacts-messages" && styles.active
+              }
+            >
+              <Link href="/profile/all-contacts-messages">
+                <img src={password.src} alt="" /> Contact Messages
               </Link>
             </li>
             <li className={pathName == "/profile/all-blogs" && styles.active}>
