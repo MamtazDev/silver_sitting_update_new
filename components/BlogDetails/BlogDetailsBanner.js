@@ -27,7 +27,7 @@ const BlogDetailsBanner = ({ blogDetails }) => {
   const shareUrl = `${process.env.NEXT_PUBLIC_MAIN_URL}/blogs/details/${blogDetails?._id}`;
   const handleShare = () => {
     setShow(true);
-    console.log(blogDetails, "gg");
+    // console.log(blogDetails, "gg");
   };
   return (
     <div className={styles.blog_details}>

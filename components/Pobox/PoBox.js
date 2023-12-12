@@ -6,7 +6,7 @@ import opensms from "../../public/assets/icons/open-sms.png";
 import Message from "./Message";
 
 const PoBox = ({ data }) => {
-  console.log(data, "meess");
+  // console.log(data, "meess");
   return (
     <div className="d-flex flex-column gap-4">
       {data.length > 0 &&

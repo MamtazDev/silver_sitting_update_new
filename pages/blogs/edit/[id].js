@@ -59,7 +59,7 @@ const EditBlogPage = () => {
       setAddingBlog(false);
       push("/profile/all-blogs");
     }
-    console.log(response, "ress");
+    // console.log(response, "ress");
   };
 
   useEffect(() => {

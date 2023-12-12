@@ -12,7 +12,7 @@ const ProfilePageParents = ({ user }) => {
 
   const [editUser, { isError, isLoading }] = useEditUserMutation();
 
-  console.log(userInfo);
+  // console.log(userInfo);
 
   const [selectedImage, setSelectedImage] = useState(null);
   const inputRef = useRef(null);

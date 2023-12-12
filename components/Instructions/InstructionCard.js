@@ -2,7 +2,7 @@ import React from "react";
 import styles from "@/styles/InstructionCard.module.css";
 
 const InstructionCard = ({ instruction, number }) => {
-  console.log(instruction.image);
+  // console.log(instruction.image);
 
   const imagePath = `${instruction?.image.src}`;
   const cleanedPath = imagePath.replace("/_next/static/media/", "");

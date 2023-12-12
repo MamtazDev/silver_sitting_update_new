@@ -53,7 +53,7 @@ const ChildCare = () => {
     useGetSearchedChildCarerMutation();
 
   const handleLookFor = (value) => {
-    console.log(value, "jj");
+    // console.log(value, "jj");
     if (lookfor.includes(value)) {
       const newArray = lookfor.filter((i) => i !== value);
       setLookfor(newArray);
@@ -119,7 +119,7 @@ const ChildCare = () => {
     };
 
     getSearchedChildCarer({ filterCriteria, data }).then((res) => {
-      console.log(res);
+      // console.log(res);
       if (res?.data?.length > 0) {
         dispatch(setChildCarerFilterData(res.data));
         setStep((prev) => prev + 1);

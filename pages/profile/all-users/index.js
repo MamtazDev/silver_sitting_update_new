@@ -12,7 +12,7 @@ import Pagination from "@/components/Pagination/Pagination";
 const AllusersPage = () => {
   const { data } = useGetAllUsersQuery();
   const [sortingUser, setSortingUser] = useState("all");
-  console.log(data?.length, "ddd");
+  // console.log(data?.length, "ddd");
   const [deleteUser, { isLoading }] = useDeleteUserMutation();
 
   //   function capitalizeFirstLetter(str) {
@@ -40,7 +40,7 @@ const AllusersPage = () => {
   };
 
   const handleDelete = async (id) => {
-    console.log(id, "idd");
+    // console.log(id, "idd");
     Swal.fire({
       title: "Are you sure?",
       text: "You won't be able to revert this!",
@@ -52,7 +52,7 @@ const AllusersPage = () => {
     }).then((result) => {
       if (result.isConfirmed) {
         deleteUser(id).then((res) => {
-          console.log(res, "ress");
+          // console.log(res, "ress");
           if (res?.data?.status === 200) {
             Swal.fire({
               title: "Deleted!",

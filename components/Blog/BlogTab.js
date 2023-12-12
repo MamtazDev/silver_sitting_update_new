@@ -10,7 +10,7 @@ const BlogTab = () => {
 
   const { i18n } = useTranslation();
 
-  console.log(allBlogs, "gg");
+  // console.log(allBlogs, "gg");
 
   const { data, isLoading } = useGetAllBlogsQuery();
 
@@ -49,7 +49,7 @@ const BlogTab = () => {
     setActive(blog?.slug);
   };
 
-  console.log(allBlogs, "dd");
+  // console.log(allBlogs, "dd");
   useEffect(() => {
     // setAllBlogs(data?.data?.blogs);
     const fetchedBlogs = data?.data?.blogs;

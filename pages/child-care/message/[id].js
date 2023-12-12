@@ -52,9 +52,9 @@ const Chatting = () => {
   };
 
   useEffect(() => {
-    socket.current  =io("ws://localhost:8900");
+    socket.current = io("ws://localhost:8900");
     socket.current.on("getMessage", (data) => {
-      console.log("data", data)
+      // console.log("data", data)
       setArrivalMessage({
         sender: data.senderId,
         text: data.text,
@@ -63,19 +63,16 @@ const Chatting = () => {
     });
   }, [arrivalMessage]);
 
-
   useEffect(() => {
     arrivalMessage &&
       id.includes(arrivalMessage.sender) &&
       setCurentAllMessages((prev) => [...prev, arrivalMessage]);
   }, [arrivalMessage, id]);
 
-
-
   useEffect(() => {
     socket.current.emit("addUser", user._id);
     socket.current.on("getUsers", (users) => {
-      console.log(users)
+      // console.log(users);
     });
   }, [user]);
 
@@ -169,7 +166,7 @@ const Chatting = () => {
 
     // http://16.171.47.109:8900/
     socket.current.on("getMessage", (data) => {
-      console.log("data", data);
+      // console.log("data", data);
       setArrivalMessage({
         sender: data.senderId,
         text: data.text,
@@ -202,10 +199,6 @@ const Chatting = () => {
       dispatch(setConversationId(data?._id));
     }
   }, [isSuccess]);
-
-  
-
-
 
   useEffect(() => {
     scrollToBottom();
