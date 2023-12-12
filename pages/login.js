@@ -3,21 +3,50 @@ import styles from "@/styles/Login.module.css";
 import children from "../public/assets/images/child-login.png";
 import Link from "next/link";
 import Meta from "@/components/Shared/Meta";
-import { useLoginMutation } from "@/features/register/registerApi";
+import {
+  useLoginMutation,
+  useSendResendEmailMutation,
+} from "@/features/register/registerApi";
 import { useRouter } from "next/router";
 import { useTranslation } from "react-i18next";
 import translations from "@/utils/translation";
 import loadingGif from "@/public/assets/loading.svg";
+import Swal from "sweetalert2";
 
 const Login = () => {
   const [agree, setAgree] = useState(false);
   const [errors, setErrors] = useState("");
+  const [resendErrors, setResendErrors] = useState("");
   const [isValid, setIsValid] = useState(false);
+  const [resendEmail, setResendEmail] = useState("");
+  const [isResendAllowed, setIsResendAllowed] = useState(true);
 
   const router = useRouter();
 
   const [login, { isError, isLoading, isSuccess, error, data }] =
     useLoginMutation();
+
+  const [sendResendEmail, { isLoading: sendingEmail }] =
+    useSendResendEmailMutation();
+
+  const handleResendLink = async () => {
+    const response = await sendResendEmail({ email: resendEmail });
+
+    if (response?.data?.success) {
+      Swal.fire({
+        title: "Sent!",
+        text: "Activation Link is sent to your email successfully!.",
+        icon: "success",
+      });
+      setIsResendAllowed(false);
+    } else {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Something went wrong!",
+      });
+    }
+  };
 
   const { i18n } = useTranslation();
 
@@ -32,6 +61,8 @@ const Login = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    setErrors("");
+    setResendErrors("");
 
     const form = event.target;
 
@@ -48,7 +79,12 @@ const Login = () => {
       if (res.data?.accessTOken) {
         router.push("/profile");
       } else if (res.error) {
-        setErrors(res.error.data.message);
+        if (res.error.data.message === "Please Verify your email.") {
+          setResendErrors(res.error.data.message);
+          setResendEmail(email);
+        } else {
+          setErrors(res.error.data.message);
+        }
       }
     });
     // } else {
@@ -102,6 +138,23 @@ const Login = () => {
             {/* <p>Forgot Password?</p> */}
             {/* </div> */}
             <p className="text-danger">{errors}</p>
+            {isResendAllowed ? (
+              <p>
+                <span>{resendErrors}</span>
+                {resendErrors && (
+                  <button
+                    type="button"
+                    className="btn btn-link"
+                    style={{ color: "#9b3095" }}
+                    onClick={handleResendLink}
+                  >
+                    Resend Email
+                  </button>
+                )}
+              </p>
+            ) : (
+              <p>Verification link sent!</p>
+            )}
             <div className="text-center">
               {isLoading ? (
                 <button

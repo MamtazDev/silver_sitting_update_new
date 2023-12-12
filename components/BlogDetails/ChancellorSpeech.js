@@ -4,8 +4,11 @@ import styles from "@/styles/Blog.module.css";
 const ChancellorSpeech = ({ blogDetails }) => {
   return (
     <div className={styles.chancellor_speech}>
-      <div className="container">
-        <div dangerouslySetInnerHTML={{ __html: blogDetails?.content }} />
+      <div className="container" style={{ textAlign: "justify" }}>
+        <div
+          dangerouslySetInnerHTML={{ __html: blogDetails?.content }}
+          style={{ textAlign: "justify" }}
+        />
         {/* As our Chancellor said in her historic television speech on March 18,
           2020:
         </h4> */}

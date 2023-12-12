@@ -7,8 +7,8 @@ export const contactUsApi = apiSlice.injectEndpoints({
       providesTags: ["ContactUs"],
     }),
     deleteContactUs: builder.mutation({
-      query: () => ({
-        url: `/api/makeContact/delete${id}`,
+      query: (id) => ({
+        url: `/api/makeContact/delete/${id}`,
         method: "DELETE",
       }),
       invalidatesTags: ["ContactUs"],

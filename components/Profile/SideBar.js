@@ -75,6 +75,11 @@ const SideBar = () => {
                 <img src={password.src} alt="" /> All Users
               </Link>
             </li>
+            <li className={pathName == "/profile/all-blogs" && styles.active}>
+              <Link href="/profile/all-blogs">
+                <img src={password.src} alt="" /> All Blogs
+              </Link>
+            </li>
             <li
               className={pathName == "/profile/all-feedbacks" && styles.active}
             >
@@ -89,11 +94,6 @@ const SideBar = () => {
             >
               <Link href="/profile/all-contacts-messages">
                 <img src={password.src} alt="" /> Contact Messages
-              </Link>
-            </li>
-            <li className={pathName == "/profile/all-blogs" && styles.active}>
-              <Link href="/profile/all-blogs">
-                <img src={password.src} alt="" /> All Blogs
               </Link>
             </li>
           </>

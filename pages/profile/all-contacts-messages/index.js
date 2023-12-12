@@ -1,23 +1,29 @@
-import React from "react";
+import React, { useState } from "react";
 import ProfileLayout from "@/layouts/Profile";
-import {
-  useDeleteBlogMutation,
-  useGetAllBlogsQuery,
-} from "@/features/blog/blogApi";
 import { formatDate } from "@/utils/utils";
 import { useRouter } from "next/router";
 import Swal from "sweetalert2";
-import { useGetAllContactUsQuery } from "@/features/contactUs/contactUsApi";
+import {
+  useDeleteContactUsMutation,
+  useGetAllContactUsQuery,
+} from "@/features/contactUs/contactUsApi";
+import Pagination from "@/components/Pagination/Pagination";
 
 const AllContactsMessages = () => {
   const { data } = useGetAllContactUsQuery();
-  // const [deleteBlog, { isLoading }] = useDeleteBlogMutation();
+  const [deleteContactUs, { isLoading }] = useDeleteContactUsMutation();
 
-  console.log(data, "ddd");
+  // filtering
 
-  // function capitalizeFirstLetter(str) {
-  //   return `${str.charAt(0).toUpperCase()}${str.slice(1).toLowerCase()}`;
-  // }
+  const [currentPage, setCurrentPage] = useState(1);
+
+  const itemsPerPage = 10;
+
+  const totalPages = Math.ceil(data?.length / itemsPerPage);
+  const startIndex = (currentPage - 1) * itemsPerPage;
+  const endIndex = startIndex + itemsPerPage;
+
+  // filtering
 
   const { push } = useRouter();
 
@@ -40,7 +46,7 @@ const AllContactsMessages = () => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        deleteBlog(id).then((res) => {
+        deleteContactUs(id).then((res) => {
           if (res?.data?.success) {
             Swal.fire({
               title: "Deleted!",
@@ -62,7 +68,7 @@ const AllContactsMessages = () => {
 
   return (
     <div>
-      <table class="table">
+      <table className="table">
         <thead>
           <tr>
             <th scope="col">#</th>
@@ -70,13 +76,13 @@ const AllContactsMessages = () => {
             <th scope="col">Email</th>
             <th scope="col">Phone Number</th>
             <th scope="col">message</th>
-
             <th scope="col">Date</th>
+            <th scope="col">Action</th>
           </tr>
         </thead>
         <tbody>
           {data &&
-            data?.map((item, idx) => (
+            data?.slice(startIndex, endIndex).map((item, idx) => (
               <tr>
                 <th scope="row">{idx + 1}</th>
                 <td>
@@ -87,10 +93,28 @@ const AllContactsMessages = () => {
                 <td>{item?.message}</td>
                 {/* <td>{capitalizeFirstLetter(item?.language)}</td> */}
                 <td>{formatDate(item?.createdAt)}</td>
+                <td>
+                  {" "}
+                  <button
+                    className="btn btn-danger btn-sm"
+                    onClick={() => handleDelete(item?._id)}
+                  >
+                    Delete
+                  </button>
+                </td>
               </tr>
             ))}
         </tbody>
       </table>
+      <div className="d-flex justify-content-center mt-5">
+        {data && data?.length > itemsPerPage && (
+          <Pagination
+            setCurrentPage={setCurrentPage}
+            currentPage={currentPage}
+            totalPages={totalPages}
+          />
+        )}
+      </div>
     </div>
   );
 };

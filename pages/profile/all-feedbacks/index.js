@@ -1,19 +1,35 @@
-import React from "react";
+import React, { useState } from "react";
 import ProfileLayout from "@/layouts/Profile";
 
 import { formatDate } from "@/utils/utils";
 import { useRouter } from "next/router";
 import Swal from "sweetalert2";
-import { useGetAllFeedbacksQuery } from "@/features/feedbacks/feedbacksApi";
+import {
+  useDeleteFeedbackMutation,
+  useGetAllFeedbacksQuery,
+} from "@/features/feedbacks/feedbacksApi";
+import Pagination from "@/components/Pagination/Pagination";
 
 const AllFeedbacksPage = () => {
   const { data } = useGetAllFeedbacksQuery();
 
-  console.log(data, "dd"); // const [deleteBlog, { isLoading }] = useDeleteBlogMutation();
+  const [deleteFeedback, { isLoading }] = useDeleteFeedbackMutation();
 
   function capitalizeFirstLetter(str) {
     return `${str.charAt(0).toUpperCase()}${str.slice(1).toLowerCase()}`;
   }
+
+  // filtering
+
+  const [currentPage, setCurrentPage] = useState(1);
+
+  const itemsPerPage = 10;
+
+  const totalPages = Math.ceil(data?.data?.length / itemsPerPage);
+  const startIndex = (currentPage - 1) * itemsPerPage;
+  const endIndex = startIndex + itemsPerPage;
+
+  // filtering
 
   const { push } = useRouter();
 
@@ -36,7 +52,7 @@ const AllFeedbacksPage = () => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        deleteBlog(id).then((res) => {
+        deleteFeedback(id).then((res) => {
           if (res?.data?.success) {
             Swal.fire({
               title: "Deleted!",
@@ -68,11 +84,12 @@ const AllFeedbacksPage = () => {
             <th scope="col">Feedback</th>
             <th scope="col">Rating</th>
             <th scope="col">Date</th>
+            <th scope="col">Action</th>
           </tr>
         </thead>
         <tbody>
           {data &&
-            data?.map((item, idx) => (
+            data?.slice(startIndex, endIndex).map((item, idx) => (
               <tr>
                 <th scope="row">{idx + 1}</th>
                 <td>
@@ -84,10 +101,28 @@ const AllFeedbacksPage = () => {
                 <td>{item?.rating}</td>
                 {/* <td>{capitalizeFirstLetter(item?.language)}</td> */}
                 <td>{formatDate(item?.createdAt)}</td>
+                <td>
+                  {" "}
+                  <button
+                    className="btn btn-danger btn-sm"
+                    onClick={() => handleDelete(item?._id)}
+                  >
+                    Delete
+                  </button>
+                </td>
               </tr>
             ))}
         </tbody>
       </table>
+      <div className="d-flex justify-content-center mt-5">
+        {data && data?.length > itemsPerPage && (
+          <Pagination
+            setCurrentPage={setCurrentPage}
+            currentPage={currentPage}
+            totalPages={totalPages}
+          />
+        )}
+      </div>
     </div>
   );
 };

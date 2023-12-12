@@ -147,7 +147,7 @@ const Header = () => {
                       {" "}
                       <img src={profileColor.src} alt="" /> Profile
                     </Link>
-                    <Link
+                    {/* <Link
                       href="/profile/ideas"
                       style={{
                         display: "flex",
@@ -156,7 +156,7 @@ const Header = () => {
                       }}
                     >
                       <img src={ideas.src} alt="" /> Ideas
-                    </Link>
+                    </Link> */}
                     <Link
                       href="/logout"
                       style={{

@@ -6,9 +6,9 @@ export const feedbacksApi = apiSlice.injectEndpoints({
       query: () => "/api/feedback/",
       providesTags: ["Feedbacks"],
     }),
-    deleteBlog: builder.mutation({
-      query: () => ({
-        url: `/api/feedback/delete${id}`,
+    deleteFeedback: builder.mutation({
+      query: (id) => ({
+        url: `/api/feedback/delete/${id}`,
         method: "DELETE",
       }),
       invalidatesTags: ["Feedbacks"],
@@ -16,4 +16,5 @@ export const feedbacksApi = apiSlice.injectEndpoints({
   }),
 });
 
-export const { useDeleteBlogMutation, useGetAllFeedbacksQuery } = feedbacksApi;
+export const { useDeleteFeedbackMutation, useGetAllFeedbacksQuery } =
+  feedbacksApi;

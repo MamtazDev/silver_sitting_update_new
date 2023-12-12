@@ -225,14 +225,26 @@ const Register = () => {
                     <img src={grandma.src} alt="" />
                     <p>Child care provider</p>
                   </label>
-                  <input type="radio" name="person" value="" id="grandma" />
+                  <input
+                    type="radio"
+                    name="person"
+                    value=""
+                    id="grandma"
+                    style={{ cursor: "pointer" }}
+                  />
                 </div>
                 <div onClick={() => dispatch(setRole("parents"))}>
                   <label className={styles.person} htmlFor="parents">
                     <img src={parents.src} alt="" />
                     <p>Parents</p>
                   </label>
-                  <input type="radio" name="person" value="" id="parents" />
+                  <input
+                    type="radio"
+                    name="person"
+                    value=""
+                    id="parents"
+                    style={{ cursor: "pointer" }}
+                  />
                 </div>
               </div>
               <div className={styles.loginButtonContainer}>
@@ -262,6 +274,7 @@ const Register = () => {
                         type="checkbox"
                         checked={older}
                         onChange={() => setOlder(!older)}
+                        style={{ cursor: "pointer" }}
                       />
                       <label className="mb-0">
                         I am at least 55 years old <span>*</span>{" "}
@@ -324,7 +337,7 @@ const Register = () => {
                         name="gender"
                         value="Male"
                         id="male"
-                        style={{ marginBottom: "0" }}
+                        style={{ marginBottom: "0", cursor: "pointer" }}
                         onChange={(e) => setGender(e.target.value)}
                         checked={gender === "Male"}
                       />
@@ -338,7 +351,7 @@ const Register = () => {
                         name="gender"
                         value="Female"
                         id="female"
-                        style={{ marginBottom: "0" }}
+                        style={{ marginBottom: "0", cursor: "pointer" }}
                         onChange={(e) => setGender(e.target.value)}
                         checked={gender === "Female"}
                       />
@@ -423,8 +436,10 @@ const Register = () => {
                     type="checkbox"
                     checked={terms}
                     onChange={() => setTerms(!terms)}
+                    style={{ cursor: "pointer" }}
+                    id="terms"
                   />
-                  <label>
+                  <label htmlFor="terms" style={{ cursor: "pointer" }}>
                     I have read the SilverSitting{" "}
                     <Link href="#!">terms and conditions</Link> and agree to
                     them.
@@ -432,11 +447,13 @@ const Register = () => {
                 </div>
                 <div className={styles.checkboxs}>
                   <input
+                    id="read"
+                    style={{ cursor: "pointer" }}
                     type="checkbox"
                     checked={privacy}
                     onChange={() => setPrivacy(!privacy)}
                   />
-                  <label>
+                  <label htmlFor="read" style={{ cursor: "pointer" }}>
                     I have read SilverSitting's{" "}
                     <Link href="!#">privacy policy</Link> and agree to it
                   </label>

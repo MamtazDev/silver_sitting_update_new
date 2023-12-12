@@ -7,16 +7,29 @@ import {
   useDeleteUserMutation,
   useGetAllUsersQuery,
 } from "@/features/register/registerApi";
+import Pagination from "@/components/Pagination/Pagination";
 
 const AllusersPage = () => {
   const { data } = useGetAllUsersQuery();
   const [sortingUser, setSortingUser] = useState("all");
-  console.log(data, "ddd");
+  console.log(data?.length, "ddd");
   const [deleteUser, { isLoading }] = useDeleteUserMutation();
 
   //   function capitalizeFirstLetter(str) {
   //     return `${str.charAt(0).toUpperCase()}${str.slice(1).toLowerCase()}`;
   //   }
+
+  // filtering
+
+  const [currentPage, setCurrentPage] = useState(1);
+
+  const itemsPerPage = 10;
+
+  const totalPages = Math.ceil(data?.data?.length / itemsPerPage);
+  const startIndex = (currentPage - 1) * itemsPerPage;
+  const endIndex = startIndex + itemsPerPage;
+
+  // filtering
 
   const handleSorting = (data) => {
     if (sortingUser === "all") {
@@ -88,50 +101,64 @@ const AllusersPage = () => {
             <th scope="col">User Name</th>
             <th scope="col">Role</th>
             <th scope="col">Email</th>
+            <th scope="col">Verified</th>
             <th scope="col">Join Date</th>
             <th scope="col">Action</th>
           </tr>
         </thead>
         <tbody>
           {data?.data &&
-            data?.data?.filter(handleSorting).map((item, idx) => (
-              <tr>
-                <th scope="row">{idx + 1}</th>
-                <td>
-                  {item?.firstName} {item?.lastName}
-                </td>
-                {/* <td>{capitalizeFirstLetter(item?.language)}</td> */}
-                <td>{item?.role}</td>
-                <td>{item?.email}</td>
-                <td>{formatDate(item?.createdAt)}</td>
-                <td>
-                  <div className="d-flex gap-1">
-                    {/* <button
+            data?.data
+              ?.slice(startIndex, endIndex)
+              .filter(handleSorting)
+              .map((item, idx) => (
+                <tr>
+                  <th scope="row">{idx + 1}</th>
+                  <td>
+                    {item?.firstName} {item?.lastName}
+                  </td>
+                  {/* <td>{capitalizeFirstLetter(item?.language)}</td> */}
+                  <td>{item?.role}</td>
+                  <td>{item?.email}</td>
+                  <td>{item?.isVerified ? "Yes" : "No"}</td>
+                  <td>{formatDate(item?.createdAt)}</td>
+                  <td>
+                    <div className="d-flex gap-1">
+                      {/* <button
                       className="btn btn-primary btn-sm"
                       onClick={() => handleEdit(item?._id)}
                     >
                       Edit
                     </button> */}
-                    {item?.role !== "admin" && (
-                      <button
-                        className="btn btn-danger btn-sm"
-                        onClick={() => handleDelete(item?._id)}
-                      >
-                        Delete
-                      </button>
-                    )}
-                    {/* <button
+                      {item?.role !== "admin" && (
+                        <button
+                          className="btn btn-danger btn-sm"
+                          onClick={() => handleDelete(item?._id)}
+                        >
+                          Delete
+                        </button>
+                      )}
+                      {/* <button
                       className="btn btn-secondary btn-sm"
                       onClick={() => handleView(item?._id)}
                     >
                       View
                     </button> */}
-                  </div>
-                </td>
-              </tr>
-            ))}
+                    </div>
+                  </td>
+                </tr>
+              ))}
         </tbody>
       </table>
+      <div className="d-flex justify-content-center mt-5">
+        {data?.data && data?.data?.length > itemsPerPage && (
+          <Pagination
+            setCurrentPage={setCurrentPage}
+            currentPage={currentPage}
+            totalPages={totalPages}
+          />
+        )}
+      </div>
     </div>
   );
 };

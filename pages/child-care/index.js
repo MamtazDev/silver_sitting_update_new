@@ -238,6 +238,7 @@ const ChildCare = () => {
                       <input
                         value={distanceInputValue}
                         type="number"
+                        min="1"
                         name="maxDistance"
                         className="mx-3 text-center"
                         placeholder="30"

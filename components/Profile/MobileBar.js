@@ -75,13 +75,48 @@ const MobileBar = () => {
             <Link href="/profile/settings">Settings</Link>
           </li>
         )}
-        <li
+        {/* <li
           className={
             pathName == "/profile/change-password" && styles.mobileActive
           }
         >
           <Link href="/profile/change-password">Change password</Link>
-        </li>
+        </li> */}
+        {user?.role === "admin" && (
+          <>
+            <li
+              className={
+                pathName == "/profile/all-users" && styles.mobileActive
+              }
+            >
+              <Link href="/profile/all-users">All Users</Link>
+            </li>
+            <li
+              className={
+                pathName == "/profile/all-blogs" && styles.mobileActive
+              }
+            >
+              <Link href="/profile/all-blogs">All Blogs</Link>
+            </li>
+            <li
+              className={
+                pathName == "/profile/all-feedbacks" && styles.mobileActive
+              }
+            >
+              <Link href="/profile/all-feedbacks">All Feedbacks</Link>
+            </li>
+            <li
+              className={
+                pathName == "/profile/all-contacts-messages" &&
+                styles.mobileActive
+              }
+            >
+              <Link href="/profile/all-contacts-messages">
+                Contact Messages
+              </Link>
+            </li>
+          </>
+        )}
       </ul>
     </div>
   );
