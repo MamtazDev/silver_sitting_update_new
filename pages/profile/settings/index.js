@@ -1,13 +1,15 @@
 import ProfileLayout from "@/layouts/Profile";
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import styles from "@/styles/Setting.module.css";
 import { FiPlus } from "react-icons/fi";
 import info from "../../../public/assets/icons/info.png";
 import {
+  useChangeSearchStatusMutation,
   useGetSingleUserQuery,
   useUploadDocumentMutation,
 } from "@/features/register/registerApi";
 import { useSelector } from "react-redux";
+import Swal from "sweetalert2";
 
 const settings = () => {
   const { user } = useSelector((state) => state.register);
@@ -18,6 +20,9 @@ const settings = () => {
   const [parentSearch, setParentSearch] = useState(false);
 
   const [uploadDocument, { isLoading }] = useUploadDocumentMutation();
+
+  const [changeSearchStatus, { isLoading: updatingSeachStatus }] =
+    useChangeSearchStatusMutation();
 
   const inputRef = useRef(null);
   const handleClick = () => {
@@ -43,6 +48,35 @@ const settings = () => {
       }
     });
   };
+
+  const handleChangeStatus = async () => {
+    const res = await changeSearchStatus({
+      id: user?._id,
+      data: { parentSearch: parentSearch },
+    });
+
+    if (res?.data?.success) {
+      Swal.fire({
+        icon: "success",
+        title: "Successfull!",
+        text: "Search status updated successfully!",
+        showConfirmButton: false,
+        timer: 1500,
+      });
+    } else {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Somethings went wrong...",
+        showConfirmButton: false,
+        timer: 1500,
+      });
+    }
+  };
+
+  useEffect(() => {
+    setParentSearch(userInfo?.parentSearch);
+  }, [userInfo]);
 
   return (
     <div className={styles.mainContainer}>
@@ -78,9 +112,9 @@ const settings = () => {
             <input
               type="checkbox"
               name=""
-              value=""
-              checked={parentSearch || userInfo?.parentSearch}
-              onChange={() => setParentSearch(!parentSearch)}
+              checked={parentSearch}
+              onClick={() => setParentSearch(!parentSearch)}
+              // onChange={() => setParentSearch(!parentSearch)}
             />
             <label htmlFor="">
               I do not want to be found in the parent's search at the moment.
@@ -92,7 +126,11 @@ const settings = () => {
               alt=""
             />
           </div>
-          <button onClick={handleUpload}>Save</button>
+          {updatingSeachStatus ? (
+            <button disabled>Saving...</button>
+          ) : (
+            <button onClick={handleChangeStatus}>Save</button>
+          )}
 
           {warningShow && (
             <div className={styles.labelTextContainer}>

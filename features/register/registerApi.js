@@ -114,6 +114,13 @@ export const registerApi = apiSlice.injectEndpoints({
         body: data,
       }),
     }),
+    changeSearchStatus: builder.mutation({
+      query: ({ id, data }) => ({
+        url: `/api/users/searchStatus/${id}`,
+        method: "PUT",
+        body: data,
+      }),
+    }),
   }),
 });
 
@@ -127,4 +134,5 @@ export const {
   useSendResendEmailMutation,
   useDeleteUserMutation,
   useChangePasswordMutation,
+  useChangeSearchStatusMutation,
 } = registerApi;

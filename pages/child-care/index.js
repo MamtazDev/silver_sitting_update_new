@@ -121,7 +121,7 @@ const ChildCare = () => {
     getSearchedChildCarer({ filterCriteria, data }).then((res) => {
       // console.log(res);
       if (res?.data?.length > 0) {
-        dispatch(setChildCarerFilterData(res.data));
+        dispatch(setChildCarerFilterData(res?.data));
         setStep((prev) => prev + 1);
       } else if (res?.data?.length === 0) {
         setStep("error");
