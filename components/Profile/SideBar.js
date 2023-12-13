@@ -96,6 +96,13 @@ const SideBar = () => {
                 <img src={password.src} alt="" /> Contact Messages
               </Link>
             </li>
+            <li
+              className={pathName == "/profile/all-documents" && styles.active}
+            >
+              <Link href="/profile/all-documents">
+                <img src={password.src} alt="" /> All Documents
+              </Link>
+            </li>
           </>
         )}
       </ul>

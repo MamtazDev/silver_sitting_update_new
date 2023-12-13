@@ -20,7 +20,7 @@ const settings = () => {
   const [warningShow, setWarningShow] = useState(false);
   const [parentSearch, setParentSearch] = useState(false);
   const [pdfs, setPdfs] = useState([]);
-
+  const [uploadNotAllowed, setUploadNotAllowed] = useState(false);
 
   const [uploadDocument, { isLoading }] = useUploadDocumentMutation();
 
@@ -39,30 +39,26 @@ const settings = () => {
   };
 
   const handleUpload = async () => {
-
-    console.log("selectedFile", selectedFile)
+    console.log("selectedFile", selectedFile);
 
     const data = {
       url: selectedFile,
     };
 
     const formData = new FormData();
-    formData.append('pdf', selectedFile);
-    formData.append('user', user?._id);
+    formData.append("pdf", selectedFile);
+    formData.append("user", user?._id);
 
     try {
-      await axios.post('http://localhost:8000/upload', formData, {
+      await axios.post("http://localhost:8000/upload", formData, {
         headers: {
-          'Content-Type': 'multipart/form-data',
+          "Content-Type": "multipart/form-data",
         },
       });
-      console.log('File uploaded successfully');
+      console.log("File uploaded successfully");
     } catch (error) {
-      console.error('Error uploading file:', error.message);
+      console.error("Error uploading file:", error.message);
     }
-  
-
-
 
     // uploadDocument({ id: user?._id, formData }).then((res) => {
 
@@ -103,62 +99,76 @@ const settings = () => {
 
   // http://localhost:8000/pdf/65797e3a487bfc46c950764c
 
-  const handleViewPdf = async ({pdf}) => {
-    console.log("id:", pdf)
-    console.log("pdfs:", pdfs)
+  const handleViewPdf = async ({ pdf }) => {
+    console.log("id:", pdf);
+    console.log("pdfs:", pdfs);
 
     try {
-      const response = await axios.get(`http://localhost:8000/pdf/6579953b5b77f7b8f8fa9b86`, {
-        responseType: 'arraybuffer',
-      }); // Replace 'your-pdf-id' with the actual PDF ID
+      const response = await axios.get(
+        `${process.env.NEXT_PUBLIC_API_URL}/pdf/${user?._id}`,
+        {
+          responseType: "arraybuffer",
+        }
+      ); // Replace 'your-pdf-id' with the actual PDF ID
 
-      const blob = new Blob([response.data], { type: response.headers['content-type'] });
+      const blob = new Blob([response.data], {
+        type: response.headers["content-type"],
+      });
       const url = URL.createObjectURL(blob);
-      window.open(url, '_blank');
+      window.open(url, "_blank");
     } catch (error) {
-      console.error('Error fetching PDF:', error.message);
+      console.error("Error fetching PDF:", error.message);
     }
   };
 
   const getAllPdf = async () => {
     try {
-      const response = await axios.get('http://localhost:8000/pdf'); // Replace 'your-pdf-id' with the actual PDF ID
+      const response = await axios.get(
+        `${process.env.NEXT_PUBLIC_API_URL}/pdf`
+      ); // Replace 'your-pdf-id' with the actual PDF ID
 
-      const blob = new Blob([response.data], { type: response.headers['content-type'] });
+      const blob = new Blob([response.data], {
+        type: response.headers["content-type"],
+      });
       const url = URL.createObjectURL(blob);
-      window.open(url, '_blank');
+      window.open(url, "_blank");
     } catch (error) {
-      console.error('Error fetching PDF:', error.message);
+      console.error("Error fetching PDF:", error.message);
     }
   };
 
-
-
+  useEffect(() => {
+    setParentSearch(userInfo?.parentSearch);
+  }, [userInfo]);
 
   useEffect(() => {
     const fetchPdfs = async () => {
       try {
-        const response = await axios.get('http://localhost:8000/pdf');
-        setPdfs(response.data);
+        const response = await axios.get(
+          `${process.env.NEXT_PUBLIC_API_URL}/pdf`
+        );
+        setPdfs(response?.data);
 
-        console.log("pdfs", response.data)
+        const filterPdf = response?.data?.find(
+          (i) => i?.user?._id === user?._id
+        );
 
+        if (filterPdf) {
+          setUploadNotAllowed(true);
+        }
       } catch (error) {
-        console.error('Error fetching PDFs:', error.message);
+        console.error("Error fetching PDFs:", error.message);
       }
     };
 
-    fetchPdfs();
-   
-    setParentSearch(userInfo?.parentSearch);
-   
-  }, [userInfo]);
+    return () => fetchPdfs();
+  }, [user]);
 
   return (
     <div className={styles.mainContainer}>
       <h3>Settings</h3>
-      {/* <button onClick={handleViewPdf}>View PDF</button>
-      <ul>
+      {/* <button onClick={handleViewPdf}>View PDF</button> */}
+      {/*  <ul>
           {pdfs?.map((pdf) => (
             <li key={pdf._id}>
               <button onClick={() => handleViewPdf(pdf)}>View</button> {pdf._id}
@@ -166,28 +176,32 @@ const settings = () => {
           ))}
         </ul> */}
 
-
-
       <div className={styles.mainContentContainer}>
         <div className={`${styles.fileContainer} w-100`}>
-          <p>
-            Your certificate of good conduct has been successfully uploaded and
-            will now be checked.
-          </p>
-          <button
-            className="d-flex align-items-center justify-content-center gap-2"
-            onClick={handleClick}
-          >
-            <FiPlus className="fs-4" />
-            Select Extended certificate of good conduct
-          </button>
-          <button
-            className="d-flex align-items-center justify-content-center gap-2"
-            onClick={handleUpload}
-          >
-            <FiPlus className="fs-4" />
-            Upload PDF
-          </button>
+          {uploadNotAllowed && (
+            <p>
+              Your certificate of good conduct has been successfully uploaded
+              and will now be checked.
+            </p>
+          )}
+          {!uploadNotAllowed && (
+            <button
+              className="d-flex align-items-center justify-content-center gap-2"
+              onClick={handleClick}
+            >
+              <FiPlus className="fs-4" />
+              Select Extended certificate of good conduct
+            </button>
+          )}
+          {!uploadNotAllowed && (
+            <button
+              className="d-flex align-items-center justify-content-center gap-2"
+              onClick={handleUpload}
+            >
+              <FiPlus className="fs-4" />
+              Upload PDF
+            </button>
+          )}
           <input
             type="file"
             ref={inputRef}
