@@ -95,8 +95,12 @@ export const registerApi = apiSlice.injectEndpoints({
     }),
     uploadDocument: builder.mutation({
       query: ({ id, data }) => ({
-        url: `/api/users/upload/${id}`,
-        method: "PUT",
+        // url: `/api/users/upload/${id}`,
+        url: `/upload`,
+        method: "POST",
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
         body: data,
       }),
     }),

@@ -10,6 +10,7 @@ import {
 } from "@/features/register/registerApi";
 import { useSelector } from "react-redux";
 import Swal from "sweetalert2";
+import axios from "axios";
 
 const settings = () => {
   const { user } = useSelector((state) => state.register);
@@ -18,6 +19,8 @@ const settings = () => {
   const [selectedFile, setSelectedFile] = useState(null);
   const [warningShow, setWarningShow] = useState(false);
   const [parentSearch, setParentSearch] = useState(false);
+  const [pdfs, setPdfs] = useState([]);
+
 
   const [uploadDocument, { isLoading }] = useUploadDocumentMutation();
 
@@ -35,18 +38,42 @@ const settings = () => {
     setSelectedFile(file);
   };
 
-  const handleUpload = () => {
+  const handleUpload = async () => {
+
+    console.log("selectedFile", selectedFile)
+
     const data = {
-      url: selectedFile?.name,
-      parentSearch,
+      url: selectedFile,
     };
-    uploadDocument({ id: user?._id, data }).then((res) => {
-      if (res.data?.status === 200) {
-        alert("Document uploaded sucessfully!");
-      } else if (res.error) {
-        alert("Error occured!");
-      }
-    });
+
+    const formData = new FormData();
+    formData.append('pdf', selectedFile);
+    formData.append('user', user?._id);
+
+    try {
+      await axios.post('http://localhost:8000/upload', formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      });
+      console.log('File uploaded successfully');
+    } catch (error) {
+      console.error('Error uploading file:', error.message);
+    }
+  
+
+
+
+    // uploadDocument({ id: user?._id, formData }).then((res) => {
+
+    //   console.log("data from update Document : ", data)
+    //   console.log("data from update Document _id: ",  user?._id)
+    //   if (res.data?.status === 200) {
+    //     alert("Document uploaded sucessfully!");
+    //   } else if (res.error) {
+    //     alert("Error occured!");
+    //   }
+    // });
   };
 
   const handleChangeStatus = async () => {
@@ -74,13 +101,72 @@ const settings = () => {
     }
   };
 
+  // http://localhost:8000/pdf/65797e3a487bfc46c950764c
+
+  const handleViewPdf = async ({pdf}) => {
+    console.log("id:", pdf)
+    console.log("pdfs:", pdfs)
+
+    try {
+      const response = await axios.get(`http://localhost:8000/pdf/6579953b5b77f7b8f8fa9b86`, {
+        responseType: 'arraybuffer',
+      }); // Replace 'your-pdf-id' with the actual PDF ID
+
+      const blob = new Blob([response.data], { type: response.headers['content-type'] });
+      const url = URL.createObjectURL(blob);
+      window.open(url, '_blank');
+    } catch (error) {
+      console.error('Error fetching PDF:', error.message);
+    }
+  };
+
+  const getAllPdf = async () => {
+    try {
+      const response = await axios.get('http://localhost:8000/pdf'); // Replace 'your-pdf-id' with the actual PDF ID
+
+      const blob = new Blob([response.data], { type: response.headers['content-type'] });
+      const url = URL.createObjectURL(blob);
+      window.open(url, '_blank');
+    } catch (error) {
+      console.error('Error fetching PDF:', error.message);
+    }
+  };
+
+
+
+
   useEffect(() => {
+    const fetchPdfs = async () => {
+      try {
+        const response = await axios.get('http://localhost:8000/pdf');
+        setPdfs(response.data);
+
+        console.log("pdfs", response.data)
+
+      } catch (error) {
+        console.error('Error fetching PDFs:', error.message);
+      }
+    };
+
+    fetchPdfs();
+   
     setParentSearch(userInfo?.parentSearch);
+   
   }, [userInfo]);
 
   return (
     <div className={styles.mainContainer}>
       <h3>Settings</h3>
+      {/* <button onClick={handleViewPdf}>View PDF</button>
+      <ul>
+          {pdfs?.map((pdf) => (
+            <li key={pdf._id}>
+              <button onClick={() => handleViewPdf(pdf)}>View</button> {pdf._id}
+            </li>
+          ))}
+        </ul> */}
+
+
 
       <div className={styles.mainContentContainer}>
         <div className={`${styles.fileContainer} w-100`}>
@@ -94,6 +180,13 @@ const settings = () => {
           >
             <FiPlus className="fs-4" />
             Select Extended certificate of good conduct
+          </button>
+          <button
+            className="d-flex align-items-center justify-content-center gap-2"
+            onClick={handleUpload}
+          >
+            <FiPlus className="fs-4" />
+            Upload PDF
           </button>
           <input
             type="file"
