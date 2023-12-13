@@ -13,7 +13,7 @@ const Faq = () => {
     {
       question: "How can I best prepare for my first childcare?",
       answer:
-        "Wir empfehlen, offen über Erwartungen, Erfahrungen und auch Bedürfnisse, wie etwa körperliche Einschränkungen, mit den Eltern zu sprechen. Im Umkehrschluss werden die Eltern dir einige Informationen zu ihrem Kind mitteilen (Essen- und Schlafgewohnheiten, Lieblingsaktivitäten etc.) Am besten ihr klärt so detailliert wie möglich alle Fragen rund um die Betreuungsleistung (z.B. Erstattung von finanziellen Aufwendung während der Betreuung) - Ziel ist, dass alle Beteiligten zufrieden sind!",
+        "We recommend that you talk openly about your expectations, experiences and also needs, such as physical limitations, with your parents. Conversely, the parents will give you some information about their child (eating and sleeping habits, favourite activities, etc.). It is best if you clarify as detailed as possible all questions around the care service, so that in the end all participants are satisfied.",
     },
     {
       question:
@@ -29,7 +29,7 @@ const Faq = () => {
     {
       question: "Does SilverSitting pre-select the child carers?",
       answer:
-        "Nein, wir geben den Eltern die Möglichkeit bequem per Klick selbstständig Kinderbetreuung zu organisieren. Dabei wählen die Eltern frei, welcher Kinderbetreuer kompetent und sympathisch erscheint.It is absolutely necessary to get to know each other personally before you can be looked after. This is the only way parents can determine whether the chemistry is right.",
+        "We give parents the opportunity to organize childcare themselves with just a mouseclick. Parents are free to choose which SilverSitter appears competent and friendly. Before a childcare is arranged, it is absolutely necessary to get to know each other personally. This is the only way for parents to determine whether the chemistry is right.",
     },
     {
       question: "Can I also earn money with childcare?",

@@ -138,7 +138,7 @@ const Register = () => {
               lastName,
               email,
               postCode: parseInt(postCode),
-              residance: residence,
+              residence: residence,
               password,
               streetOrHouseNumber,
               gender,
@@ -169,16 +169,17 @@ const Register = () => {
         const matchedPassword = checkMatchedPassword(password, rePassword);
 
         if (matchedPassword) {
-          if (terms && privacy) {
+          if (terms && privacy && gender) {
             const data = {
               role,
               firstName,
               lastName,
               email,
               postCode: parseInt(postCode),
-              residance: residence,
+              residence: residence,
               password,
               streetOrHouseNumber,
+              gender,
             };
             register(data).then((res) => {
               if (res.data?.status === 200) {
@@ -441,8 +442,10 @@ const Register = () => {
                   />
                   <label htmlFor="terms" style={{ cursor: "pointer" }}>
                     I have read the SilverSitting{" "}
-                    <Link href="#!">terms and conditions</Link> and agree to
-                    them.
+                    <Link href="/terms-and-conditions">
+                      terms and conditions
+                    </Link>{" "}
+                    and agree to them.
                   </label>
                 </div>
                 <div className={styles.checkboxs}>
@@ -455,7 +458,8 @@ const Register = () => {
                   />
                   <label htmlFor="read" style={{ cursor: "pointer" }}>
                     I have read SilverSitting's{" "}
-                    <Link href="!#">privacy policy</Link> and agree to it
+                    <Link href="/privacy-statement">privacy policy</Link> and
+                    agree to it
                   </label>
                 </div>
               </div>
@@ -479,10 +483,8 @@ const Register = () => {
               )}
               <div className={styles.quoteText}>
                 If you need assistance with registration then contact us at
-                <a href="mailto:info@silversitting.com">
-                  info@silversitting.com
-                </a>{" "}
-                . We're happy to help!
+                {/* <a href="mailto:info@silversitting.com"> */}
+                <a href="#">info@silversitting.com</a> . We're happy to help!
               </div>
 
               <div className={styles.lightImage}>
@@ -497,8 +499,9 @@ const Register = () => {
               <p>
                 To complete your registration, please click on the{" "}
                 <Link
-                  href="https://mail.google.com/mail/u/0/#inbox"
-                  target="_blank"
+                  // href="https://mail.google.com/mail/u/0/#inbox"
+                  href="#"
+                  // target="_blank"
                 >
                   link
                 </Link>{" "}

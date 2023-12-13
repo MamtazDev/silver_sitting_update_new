@@ -159,7 +159,7 @@ const ChildCare = () => {
 
   useEffect(() => {
     if (router.query?.location) {
-      submitButtonRef.current.click();
+      submitButtonRef?.current?.click();
     }
   }, [router.query?.location]);
 

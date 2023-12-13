@@ -135,7 +135,7 @@ const Footer = () => {
       path: "/child-care",
     },
     {
-      name: "Surrogate",
+      name: "Surrogate Grandma",
       path: "/child-care",
     },
     {
@@ -203,7 +203,7 @@ const Footer = () => {
     } else {
       dispatch(setCity(""));
     }
-    push("/child-care");
+    push(`/child-care?location=${city}`);
   };
   return (
     <footer>
@@ -226,7 +226,7 @@ const Footer = () => {
         <div className="d-flex gap-4 flex-wrap flex-column flex-md-row justify-content-between">
           <div>
             {routes.slice(0, 4).map((item, index) => (
-              <Link href={item?.path}>{item.name}</Link>
+              <Link href={`${item?.path}`}>{item.name}</Link>
             ))}
           </div>
           <div>

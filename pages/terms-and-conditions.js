@@ -30,7 +30,7 @@ const TermsConditions = () => {
       <FinalProvision />
       <Dispute />
       <Copyright />
-      <Withdrawal/>
+      <Withdrawal />
     </div>
   );
 };

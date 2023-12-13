@@ -2,6 +2,8 @@ import { usePutMessageSeenMutation } from "@/features/chat/chatApi";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
+import menIcon from "@/public/assets/images/menIcon.png";
+import womenIcon from "@/public/assets/images/womenIcon.png";
 
 const Message = ({ styles, profile, sms, members, conversationId }) => {
   const { user } = useSelector((state) => state.register);
@@ -37,20 +39,19 @@ const Message = ({ styles, profile, sms, members, conversationId }) => {
   useEffect(() => {
     const senderId = members?.find((i) => user?._id !== i);
 
-    fetch(
-      `https://silver-backend-demo.onrender.com/api/users/${senderId}`
-    ).then((res) =>
-      res.json().then((datas) => {
-        if (datas) {
-          setUserInfo(datas);
-        }
-      })
+    fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/users/${senderId}`).then(
+      (res) =>
+        res?.json().then((datas) => {
+          if (datas) {
+            setUserInfo(datas);
+          }
+        })
     );
 
     fetch(
-      `https://silver-backend-demo.onrender.com/api/message/${senderId}/${conversationId}`
+      `${process.env.NEXT_PUBLIC_API_URL}/api/message/${senderId}/${conversationId}`
     )
-      .then((res) => res.json())
+      .then((res) => res?.json())
       .then((resData) => setMessages(resData));
   }, [user, members]);
 

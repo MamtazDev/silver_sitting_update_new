@@ -83,7 +83,7 @@ const Header = () => {
                 </div>
               </div>
               <div className="parent">
-                <button>For Nannies</button>
+                <button>For Child Carer</button>
                 <div className="child">
                   <Link href="/guidance"> Guidance child caregiver</Link>
                   <Link href="/ChildrenProviderFaq">FAQ</Link>
