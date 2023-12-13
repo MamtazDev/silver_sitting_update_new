@@ -68,7 +68,7 @@ const MobileBar = () => {
         <li className={pathName == "/profile" && styles.mobileActive}>
           <Link href="/profile">Profile</Link>
         </li>
-        {user.role === "childcarer" && (
+        {user?.role === "childcarer" && (
           <li
             className={pathName == "/profile/settings" && styles.mobileActive}
           >

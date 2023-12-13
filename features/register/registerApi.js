@@ -107,6 +107,13 @@ export const registerApi = apiSlice.injectEndpoints({
         body: data,
       }),
     }),
+    changePassword: builder.mutation({
+      query: (data) => ({
+        url: `/api/users/changePassword`,
+        method: "PUT",
+        body: data,
+      }),
+    }),
   }),
 });
 
@@ -119,4 +126,5 @@ export const {
   useUploadDocumentMutation,
   useSendResendEmailMutation,
   useDeleteUserMutation,
+  useChangePasswordMutation,
 } = registerApi;
