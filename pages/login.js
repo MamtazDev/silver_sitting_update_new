@@ -117,10 +117,10 @@ const Login = () => {
                 className="w-100"
               />
             </div>
-            {/* <div
+            <div
               className={`d-flex align-items-center mt-2 ${styles.policy} justify-content-between`}
-            > */}
-            {/* <div className="d-flex align-items-center gap-2">
+            >
+              {/* <div className="d-flex align-items-center gap-2">
                 <input
                   type="checkbox"
                   name=""
@@ -135,8 +135,8 @@ const Login = () => {
                   and agree to it. <span>*</span>
                 </label>
               </div> */}
-            {/* <p>Forgot Password?</p> */}
-            {/* </div> */}
+              <Link href="/reset-password">Forgot Password?</Link>
+            </div>
             <p className="text-danger">{errors}</p>
             {isResendAllowed ? (
               <p>

@@ -9,13 +9,21 @@ import { useRouter } from "next/router";
 import Swal from "sweetalert2";
 import Pagination from "@/components/Pagination/Pagination";
 import axios from "axios";
+import {
+  useGetAllPdfQuery,
+  useUpdatePdfStatusMutation,
+} from "@/features/pdf/pdfApi";
 
 const AllDocumentsPage = () => {
   const { data } = useGetAllBlogsQuery();
   const [deleteBlog, { isLoading }] = useDeleteBlogMutation();
 
   const [sorting, setSorting] = useState("all");
-  const [pdfs, setPdfs] = useState([]);
+  // const [pdfs, setPdfs] = useState([]);
+
+  const { data: pdfs, isLoading: getingPdfs, refetch } = useGetAllPdfQuery();
+  const [updatePdfStatus, { isLoading: updating }] =
+    useUpdatePdfStatusMutation();
 
   //   function capitalizeFirstLetter(str) {
   //     return `${str.charAt(0).toUpperCase()}${str.slice(1).toLowerCase()}`;
@@ -108,6 +116,40 @@ const AllDocumentsPage = () => {
     }
   };
 
+  const handleChangeStatus = async (pdfId, userId, status) => {
+    try {
+      const data = {
+        pdfId,
+        userId,
+        status,
+      };
+      const response = await updatePdfStatus(data);
+
+      if (response?.data?.success) {
+        Swal.fire({
+          icon: "success",
+          title: "Successfull!",
+          text: "Status updated successfully!",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+        refetch();
+      } else {
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "Somethings went wrong...",
+        });
+      }
+    } catch (error) {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Somethings went wrong...",
+      });
+    }
+  };
+
   const fetchPdfs = async () => {
     try {
       const response = await axios.get(
@@ -118,8 +160,6 @@ const AllDocumentsPage = () => {
       console.error("Error fetching PDFs:", error.message);
     }
   };
-
-  console.log(pdfs, "ggg");
 
   useEffect(() => {
     fetchPdfs();
@@ -149,55 +189,79 @@ const AllDocumentsPage = () => {
           German
         </button>
       </div> */}
-      <table class="table">
-        <thead>
-          <tr>
-            <th scope="col">#</th>
-            <th scope="col">Name</th>
-            <th scope="col">Email</th>
-            {/* <th scope="col">Publish Data</th> */}
-            <th scope="col">Action</th>
-          </tr>
-        </thead>
-        <tbody>
-          {pdfs &&
-            pdfs
-              ?.slice(startIndex, endIndex)
-              .filter(handleSorting)
-              .map((item, idx) => (
+      {getingPdfs ? (
+        <p className="text-center">Please wait! Fetching datas...</p>
+      ) : (
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Name</th>
+              <th scope="col">Email</th>
+              <th scope="col">Publish Data</th>
+              <th scope="col">Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            {pdfs &&
+              pdfs?.map((item, idx) => (
                 <tr>
                   <th scope="row">{idx + 1}</th>
                   <td>
                     {item?.user?.firstName} {item?.user?.lastName}
                   </td>
                   <td> {item?.user?.email}</td>
-                  {/* <td>{formatDate(item?.createdAt)}</td> */}
+                  <td>{formatDate(item?.createdAt)}</td>
                   <td>
-                    <div className="d-flex gap-1">
-                      {/* <button
-                      className="btn btn-primary btn-sm"
-                      onClick={() => handleEdit(item?._id)}
-                    >
-                      Edit
-                    </button> */}
-                      {/* <button
-                        className="btn btn-danger btn-sm"
-                        onClick={() => handleDelete(item?._id)}
-                      >
-                        Delete
-                      </button> */}
+                    <div className="d-flex gap-2">
+                      {item?.status === "rejected" ? (
+                        <p
+                          className="text-danger my-auto "
+                          style={{ fontSize: "12px" }}
+                        >
+                          Rejected
+                        </p>
+                      ) : (
+                        <button
+                          className="btn btn-danger btn-sm"
+                          onClick={() =>
+                            handleChangeStatus(
+                              item?._id,
+                              item?.user?._id,
+                              false
+                            )
+                          }
+                          disabled={updating || item?.status === "accepted"}
+                        >
+                          Rejected
+                        </button>
+                      )}
                       <button
                         className="btn btn-secondary btn-sm"
                         onClick={() => handleViewPdf(item)}
                       >
                         View
                       </button>
+                      {item?.status === "accepted" ? (
+                        <p className="text-success my-auto">Accepted</p>
+                      ) : (
+                        <button
+                          className="btn btn-primary btn-sm"
+                          onClick={() =>
+                            handleChangeStatus(item?._id, item?.user?._id, true)
+                          }
+                          disabled={updating || item?.status === "rejected"}
+                        >
+                          Checked
+                        </button>
+                      )}
                     </div>
                   </td>
                 </tr>
               ))}
-        </tbody>
-      </table>
+          </tbody>
+        </table>
+      )}
       {/* <div className="d-flex justify-content-center mt-5">
         {data?.data?.blogs && data?.data?.blogs?.length > itemsPerPage && (
           <Pagination

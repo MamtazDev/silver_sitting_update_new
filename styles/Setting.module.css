@@ -12,9 +12,10 @@
 }
 
 .mainContentContainer {
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
   gap: 16px;
-  flex-direction: row;
+  /* flex-direction: row; */
 }
 
 .fileContainer {
@@ -131,6 +132,6 @@
 
 @media only screen and (max-width: 688px) {
   .mainContentContainer {
-    flex-direction: column;
+    grid-template-columns: repeat(1, 1fr);
   }
 }

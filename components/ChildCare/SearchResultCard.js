@@ -18,7 +18,14 @@ const SearchResultCard = ({ index, item }) => {
           />
         </div>
         <div>
-          <h5>{item?.firstName + " " + item?.lastName}</h5>
+          <div className="d-flex gap-2">
+            <h5>{item?.firstName + " " + item?.lastName}</h5>
+            {item?.isVolunteer && (
+              <p style={{ fontSize: "10px", color: "tomato" }}>
+                I worked as volunteer
+              </p>
+            )}
+          </div>
           <span>{item?.role}</span>
           <p>{item?.aboutMe}</p>
         </div>

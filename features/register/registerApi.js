@@ -99,7 +99,7 @@ export const registerApi = apiSlice.injectEndpoints({
         url: `/upload`,
         method: "POST",
         headers: {
-          'Content-Type': 'multipart/form-data',
+          "Content-Type": "multipart/form-data",
         },
         body: data,
       }),
@@ -125,6 +125,27 @@ export const registerApi = apiSlice.injectEndpoints({
         body: data,
       }),
     }),
+    changeVolunteerStatus: builder.mutation({
+      query: ({ id, data }) => ({
+        url: `/api/users/volunteerStatus/${id}`,
+        method: "PUT",
+        body: data,
+      }),
+    }),
+    resetPassword: builder.mutation({
+      query: (data) => ({
+        url: "/api/users/resetPasswordEmail",
+        method: "POST",
+        body: data,
+      }),
+    }),
+    forgotPassword: builder.mutation({
+      query: (data) => ({
+        url: "/api/users/forgotPassword",
+        method: "POST",
+        body: data,
+      }),
+    }),
   }),
 });
 
@@ -139,4 +160,7 @@ export const {
   useDeleteUserMutation,
   useChangePasswordMutation,
   useChangeSearchStatusMutation,
+  useResetPasswordMutation,
+  useForgotPasswordMutation,
+  useChangeVolunteerStatusMutation,
 } = registerApi;

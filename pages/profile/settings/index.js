@@ -5,6 +5,7 @@ import { FiPlus } from "react-icons/fi";
 import info from "../../../public/assets/icons/info.png";
 import {
   useChangeSearchStatusMutation,
+  useChangeVolunteerStatusMutation,
   useGetSingleUserQuery,
   useUploadDocumentMutation,
 } from "@/features/register/registerApi";
@@ -14,18 +15,25 @@ import axios from "axios";
 
 const settings = () => {
   const { user } = useSelector((state) => state.register);
-  const { data: userInfo } = useGetSingleUserQuery(user?._id);
+  const { data: userInfo, refetch } = useGetSingleUserQuery(user?._id);
+
+  const [uploading, setUploading] = useState(false);
+
+  console.log(userInfo, "ddd");
 
   const [selectedFile, setSelectedFile] = useState(null);
   const [warningShow, setWarningShow] = useState(false);
   const [parentSearch, setParentSearch] = useState(false);
   const [pdfs, setPdfs] = useState([]);
   const [uploadNotAllowed, setUploadNotAllowed] = useState(false);
+  const [volunteerStatus, setVolunteerStatus] = useState(false);
 
   const [uploadDocument, { isLoading }] = useUploadDocumentMutation();
 
   const [changeSearchStatus, { isLoading: updatingSeachStatus }] =
     useChangeSearchStatusMutation();
+  const [changeVolunteerStatus, { isLoading: volunteering }] =
+    useChangeVolunteerStatusMutation();
 
   const inputRef = useRef(null);
   const handleClick = () => {
@@ -39,7 +47,16 @@ const settings = () => {
   };
 
   const handleUpload = async () => {
-    console.log("selectedFile", selectedFile);
+    setUploading(true);
+    if (selectedFile?.size > 15 * 1024 * 1024) {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "File size exceeds the 15 MB limit. Please choose a smaller file.",
+      });
+      setUploading(false);
+      return;
+    }
 
     const data = {
       url: selectedFile,
@@ -55,9 +72,12 @@ const settings = () => {
           "Content-Type": "multipart/form-data",
         },
       });
+      refetch();
+      setUploading(false);
       console.log("File uploaded successfully");
     } catch (error) {
       console.error("Error uploading file:", error.message);
+      setUploading(false);
     }
 
     // uploadDocument({ id: user?._id, formData }).then((res) => {
@@ -76,6 +96,31 @@ const settings = () => {
     const res = await changeSearchStatus({
       id: user?._id,
       data: { parentSearch: parentSearch },
+    });
+
+    if (res?.data?.success) {
+      Swal.fire({
+        icon: "success",
+        title: "Successfull!",
+        text: "Search status updated successfully!",
+        showConfirmButton: false,
+        timer: 1500,
+      });
+    } else {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Somethings went wrong...",
+        showConfirmButton: false,
+        timer: 1500,
+      });
+    }
+  };
+
+  const handleVolunteerStatus = async () => {
+    const res = await changeVolunteerStatus({
+      id: user?._id,
+      data: { isVolunteer: volunteerStatus },
     });
 
     if (res?.data?.success) {
@@ -139,6 +184,7 @@ const settings = () => {
 
   useEffect(() => {
     setParentSearch(userInfo?.parentSearch);
+    setVolunteerStatus(userInfo?.isVolunteer);
   }, [userInfo]);
 
   useEffect(() => {
@@ -178,13 +224,24 @@ const settings = () => {
 
       <div className={styles.mainContentContainer}>
         <div className={`${styles.fileContainer} w-100`}>
-          {uploadNotAllowed && (
+          {userInfo?.documentStatus === "uploaded" && (
             <p>
               Your certificate of good conduct has been successfully uploaded
               and will now be checked.
             </p>
           )}
-          {!uploadNotAllowed && (
+          {userInfo?.documentStatus === "accepted" && (
+            <p className="text-success">
+              Your certificate of good conduct has been successfully checked.
+            </p>
+          )}
+          {userInfo?.documentStatus === "rejected" && (
+            <p className="text-danger">
+              Your certificate of good conduct has been rejected.
+            </p>
+          )}
+          {(userInfo?.documentStatus === "not-uploaded" ||
+            userInfo?.documentStatus === "rejected") && (
             <button
               className="d-flex align-items-center justify-content-center gap-2"
               onClick={handleClick}
@@ -193,13 +250,15 @@ const settings = () => {
               Select Extended certificate of good conduct
             </button>
           )}
-          {!uploadNotAllowed && (
+          {(userInfo?.documentStatus === "not-uploaded" ||
+            userInfo?.documentStatus === "rejected") && (
             <button
               className="d-flex align-items-center justify-content-center gap-2"
               onClick={handleUpload}
+              disabled={uploading}
             >
-              <FiPlus className="fs-4" />
-              Upload PDF
+              {/* <FiPlus className="fs-4" /> */}
+              {uploading ? "Uploading..." : "Upload PDF"}
             </button>
           )}
           <input
@@ -211,15 +270,21 @@ const settings = () => {
           {selectedFile ? (
             <span> {selectedFile?.name}</span>
           ) : (
-            <span>Documents only, eg PDF,no pictures, Max 15MB </span>
+            <span>
+              {userInfo?.documentStatus === "not-uploaded" ||
+              userInfo?.documentStatus === "rejected"
+                ? "Documents only, eg PDF,no pictures, Max 15MB"
+                : ""}{" "}
+            </span>
           )}
         </div>
         <div className={`${styles.checkboxContainer} w-100`}>
           <div className={styles.checkBox_Box}>
             <input
+              style={{ cursor: "pointer" }}
               type="checkbox"
               name=""
-              checked={parentSearch}
+              checked={!parentSearch}
               onClick={() => setParentSearch(!parentSearch)}
               // onChange={() => setParentSearch(!parentSearch)}
             />
@@ -237,6 +302,40 @@ const settings = () => {
             <button disabled>Saving...</button>
           ) : (
             <button onClick={handleChangeStatus}>Save</button>
+          )}
+
+          {warningShow && (
+            <div className={styles.labelTextContainer}>
+              <label>
+                PLEASE NOTE: If you tick this box, your parents will no longer
+                be able to find you. Existing conversations can be continued. If
+                you remove the tick by clicking again, you will be found again.
+              </label>
+            </div>
+          )}
+        </div>
+        <div className={`${styles.checkboxContainer} w-100`}>
+          <div className={styles.checkBox_Box}>
+            <input
+              style={{ cursor: "pointer" }}
+              type="checkbox"
+              name=""
+              checked={volunteerStatus}
+              onClick={() => setVolunteerStatus(!volunteerStatus)}
+              // onChange={() => setParentSearch(!parentSearch)}
+            />
+            <label htmlFor="">I work as a volunteer.</label>
+            {/* <img
+              style={{ cursor: "pointer" }}
+              onClick={() => setWarningShow(!warningShow)}
+              src={info.src}
+              alt=""
+            /> */}
+          </div>
+          {volunteering ? (
+            <button disabled>Saving...</button>
+          ) : (
+            <button onClick={handleVolunteerStatus}>Save</button>
           )}
 
           {warningShow && (
