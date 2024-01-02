@@ -17,7 +17,7 @@ export default function middleware(req) {
   if (verify && (url.includes("/register") || url.includes("/login"))) {
     return NextResponse.redirect(`${process.env.NEXT_PUBLIC_MAIN_URL}/`);
   }
-  if (!verify && url.includes("/child-care/message")) {
-    return NextResponse.redirect(`${process.env.NEXT_PUBLIC_MAIN_URL}/login`);
-  }
+  // if (!verify && url.includes("/child-care/message")) {
+  //   return NextResponse.redirect(`${process.env.NEXT_PUBLIC_MAIN_URL}/login`);
+  // }
 }

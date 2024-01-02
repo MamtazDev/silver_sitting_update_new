@@ -17,7 +17,16 @@ import { io } from "socket.io-client";
 import { useTranslation } from "react-i18next";
 import translations from "@/utils/translation";
 
+import { Modal } from "react-bootstrap";
+import Login from "@/components/Modal/Login";
+import Register from "@/components/Modal/Register";
+import Reset from "@/components/Modal/Reset";
+
 const Chatting = () => {
+  const [loginModalShow, setLoginModalShow] = useState(false);
+  const [registerModalShow, setRegisterModalShow] = useState(false);
+  const [resetModalShow, setResetModalShow] = useState(false);
+
   const { user } = useSelector((state) => state.register);
   const { conversationId } = useSelector((state) => state.chat);
 
@@ -70,7 +79,7 @@ const Chatting = () => {
   }, [arrivalMessage, id]);
 
   useEffect(() => {
-    socket.current.emit("addUser", user._id);
+    socket.current.emit("addUser", user?._id);
     socket.current.on("getUsers", (users) => {
       // console.log(users);
     });
@@ -130,26 +139,30 @@ const Chatting = () => {
   };
 
   const handleSendMessage = () => {
-    if (inputMessage.trim() !== "") {
-      const data = {
-        conversationId,
-        sender: user?._id,
-        text: inputMessage,
-      };
+    if (user) {
+      if (inputMessage.trim() !== "") {
+        const data = {
+          conversationId,
+          sender: user?._id,
+          text: inputMessage,
+        };
 
-      const receiverId = id;
+        const receiverId = id;
 
-      socket.current.emit("sendMessage", {
-        senderId: user._id,
-        receiverId: id,
-        text: inputMessage,
-      });
+        socket.current.emit("sendMessage", {
+          senderId: user._id,
+          receiverId: id,
+          text: inputMessage,
+        });
 
-      addMessage(data).then((res) => {
-        if (res.data) {
-          setInputMessage("");
-        }
-      });
+        addMessage(data).then((res) => {
+          if (res.data) {
+            setInputMessage("");
+          }
+        });
+      }
+    } else {
+      setLoginModalShow(true);
     }
   };
 
@@ -182,7 +195,7 @@ const Chatting = () => {
   }, [arrivalMessage, id]);
 
   useEffect(() => {
-    socket.current.emit("addUser", user._id);
+    socket.current.emit("addUser", user?._id);
     socket.current.on("getUsers", (users) => {
       // console.log(users);
     });
@@ -280,6 +293,49 @@ const Chatting = () => {
         </div>
       </div>
       <div className={styles.emptyContainer}></div>
+      <>
+        <Modal
+          show={loginModalShow}
+          onHide={() => setLoginModalShow(false)}
+          centered
+      
+        >
+          <Modal.Body className="p-0">
+            <Login
+              setLoginModalShow={setLoginModalShow}
+              setRegisterModalShow={setRegisterModalShow}
+              setResetModalShow={setResetModalShow}
+            />
+          </Modal.Body>
+        </Modal>
+      </>
+      <>
+        <Modal
+          show={resetModalShow}
+          onHide={() => setResetModalShow(false)}
+          centered
+      
+        >
+          <Modal.Body className="p-0">
+            <Reset
+              resetModalShow={resetModalShow}
+              setResetModalShow={setResetModalShow}
+            />
+          </Modal.Body>
+        </Modal>
+      </>
+      <>
+        <Modal
+          show={registerModalShow}
+          onHide={() => setRegisterModalShow(false)}
+          centered
+          size="lg"
+        >
+          <Modal.Body className="p-0">
+            <Register setRegisterModalShow={setRegisterModalShow} />
+          </Modal.Body>
+        </Modal>
+      </>
     </section>
   );
 };
