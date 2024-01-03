@@ -49,7 +49,7 @@ const BlogTab = () => {
     setActive(blog?.slug);
   };
 
-  // console.log(allBlogs, "dd");
+  console.log(data, "dd");
   useEffect(() => {
     // setAllBlogs(data?.data?.blogs);
     const fetchedBlogs = data?.data?.blogs;
