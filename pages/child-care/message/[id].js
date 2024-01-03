@@ -206,12 +206,12 @@ const Chatting = () => {
   }, [message]);
 
   useEffect(() => {
-    if (isSuccess && !data) {
+    if (isSuccess && !data && user) {
       createConversation();
-    } else if (isSuccess && data) {
+    } else if (isSuccess && data && user) {
       dispatch(setConversationId(data?._id));
     }
-  }, [isSuccess]);
+  }, [isSuccess, user]);
 
   useEffect(() => {
     scrollToBottom();
@@ -298,7 +298,6 @@ const Chatting = () => {
           show={loginModalShow}
           onHide={() => setLoginModalShow(false)}
           centered
-      
         >
           <Modal.Body className="p-0">
             <Login
@@ -314,7 +313,6 @@ const Chatting = () => {
           show={resetModalShow}
           onHide={() => setResetModalShow(false)}
           centered
-      
         >
           <Modal.Body className="p-0">
             <Reset

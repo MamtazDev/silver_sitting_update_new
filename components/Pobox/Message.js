@@ -12,7 +12,7 @@ const Message = ({ styles, profile, sms, members, conversationId }) => {
 
   const [putMessageSeen] = usePutMessageSeenMutation();
 
-  //   console.log(members, "mmmebe");
+  console.log(members, "mmmebe");
 
   //   const getTheUserInfo = async (values, content) => {
   //     let userInfo = "hh";
@@ -38,6 +38,7 @@ const Message = ({ styles, profile, sms, members, conversationId }) => {
 
   useEffect(() => {
     const senderId = members?.find((i) => user?._id !== i);
+    console.log(senderId, "senderId");
 
     fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/users/${senderId}`).then(
       (res) =>
