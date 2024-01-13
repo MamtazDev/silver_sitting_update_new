@@ -153,6 +153,8 @@ const ChildCare = () => {
     }
   };
 
+  console.log(router.query?.location, "router.query?.location");
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [step]);
@@ -227,7 +229,9 @@ const ChildCare = () => {
                   <input
                     type="text"
                     className="w-100"
-                    Value={city}
+                    Value={
+                      router.query?.location ? router.query?.location : city
+                    }
                     name="city"
                     // onChange={(e) => handleChange(e)}
                   />

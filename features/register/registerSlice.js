@@ -24,6 +24,9 @@ const registerSlice = createSlice({
         state.registerPage.step = 2;
         state.registerPage.heading = false;
         return;
+      }
+      if (action.payload === "go-back") {
+        state.registerPage.step = 1;
       } else {
         state.registerPage.step = state.registerPage.step + 1;
       }

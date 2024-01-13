@@ -258,8 +258,8 @@
 
 .genderInputContainer {
   display: flex;
-  gap: 130px;
-  margin-top: 20px;
+  gap: 60px;
+  margin-top: 5px;
 }
 
 .genderInputContainer div {

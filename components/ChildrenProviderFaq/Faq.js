@@ -23,8 +23,8 @@ const Faq = () => {
     },
     {
       question: "Is my personal data freely accessible?",
-      answer:
-        "No, only your first name, your description, your photo and how far away you are from your parents will be displayed. Please understand that we have to make this information available to the parents looking for childcare - after all, the parents make a decision for the well-being and safety of their children based on your information. You can read more about the protection of your data in the terms and conditions  and the data protection regulations  .",
+      answer: `<div>No, only your first name, your description, your photo and how far away you are from your parents will be displayed. Please understand that we have to make this information available to the parents looking for childcare - after all, the parents make a decision for the well-being and safety of their children based on your information.</br>
+        You can read more about the protection of your data in the <a href="${process.env.NEXT_PUBLIC_MAIN_URL}/terms-and-conditions" target="_blank">terms and conditions</a>  and the <a href="${process.env.NEXT_PUBLIC_MAIN_URL}/privacy-statement" target="_blank">data protection regulations</a>.</div>`,
     },
     {
       question: "Does SilverSitting pre-select the child carers?",

@@ -200,10 +200,8 @@ const Footer = () => {
   const handleClick = (city) => {
     if (city) {
       dispatch(setCity(city));
-    } else {
-      dispatch(setCity(""));
+      push(`/child-care?location=${city}`);
     }
-    push(`/child-care?location=${city}`);
   };
   return (
     <footer>
@@ -252,30 +250,54 @@ const Footer = () => {
         <div className="d-flex gap-4 flex-wrap flex-column flex-md-row justify-content-between">
           <div>
             {routes.slice(15, 22).map((item, index) => (
-              <Link href="" onClick={() => handleClick(item?.area)}>
+              <a
+                style={{
+                  color: "rgba(224, 224, 224, 0.878431)",
+                  cursor: "pointer",
+                }}
+                onClick={() => handleClick(item?.area)}
+              >
                 {item.name}
-              </Link>
+              </a>
             ))}
           </div>
           <div>
             {routes.slice(22, 29).map((item, index) => (
-              <Link href="" onClick={() => handleClick(item?.area)}>
+              <a
+                style={{
+                  color: "rgba(224, 224, 224, 0.878431)",
+                  cursor: "pointer",
+                }}
+                onClick={() => handleClick(item?.area)}
+              >
                 {item.name}
-              </Link>
+              </a>
             ))}
           </div>
           <div>
             {routes.slice(29, 35).map((item, index) => (
-              <Link href="" onClick={() => handleClick(item?.area)}>
+              <a
+                style={{
+                  color: "rgba(224, 224, 224, 0.878431)",
+                  cursor: "pointer",
+                }}
+                onClick={() => handleClick(item?.area)}
+              >
                 {item.name}
-              </Link>
+              </a>
             ))}
           </div>
           <div>
             {routes.slice(35, 41).map((item, index) => (
-              <Link href="" onClick={() => handleClick(item?.area)}>
+              <a
+                style={{
+                  color: "rgba(224, 224, 224, 0.878431)",
+                  cursor: "pointer",
+                }}
+                onClick={() => handleClick(item?.area)}
+              >
                 {item.name}
-              </Link>
+              </a>
             ))}
           </div>
         </div>

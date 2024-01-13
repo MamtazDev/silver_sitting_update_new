@@ -481,6 +481,14 @@ const Register = () => {
                   </button>
                 </div>
               )}
+              <div
+                className={`text-center mt-2 ${styles.loginButtonContainer}`}
+                onClick={() => dispatch(setStepControll("go-back"))}
+              >
+                <button className={`btn`} type="button">
+                  Go Back
+                </button>
+              </div>
               <div className={styles.quoteText}>
                 If you need assistance with registration then contact us at
                 {/* <a href="mailto:info@silversitting.com"> */}

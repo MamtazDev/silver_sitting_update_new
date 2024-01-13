@@ -96,7 +96,7 @@ const ProfilePageSenior = ({ user }) => {
       };
 
       editUser({ id: user?._id, editData: data }).then((res) => {
-        if (res.data.status === 200) {
+        if (res?.data?.status === 200) {
           alert(res.data.message);
         }
       });
