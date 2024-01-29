@@ -12,6 +12,7 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   setChildCarerFilterData,
   setCity,
+  setStep,
 } from "@/features/childCareSearch/childCareSearchSlice";
 import { useTranslation } from "react-i18next";
 import translations from "@/utils/translation";
@@ -21,7 +22,7 @@ import { useRouter } from "next/router";
 const ChildCare = () => {
   const [lookfor, setLookfor] = useState([]);
   const [warning, setWarning] = useState(false);
-  const [step, setStep] = useState(0);
+  // const [step, setStep] = useState(0);
   const [modalShow, setModalShow] = useState(false);
   const [distanceInputValue, setDistanceInputValue] = useState("");
   const [searchError, setSearchError] = useState("");
@@ -29,7 +30,7 @@ const ChildCare = () => {
   const [offers, setOffers] = useState([]);
 
   const dispatch = useDispatch();
-  const { city } = useSelector((state) => state.childCarerFilter);
+  const { city, step } = useSelector((state) => state.childCarerFilter);
   const { i18n } = useTranslation();
 
   const router = useRouter();
@@ -122,15 +123,18 @@ const ChildCare = () => {
       // console.log(res);
       if (res?.data?.length > 0) {
         dispatch(setChildCarerFilterData(res?.data));
-        setStep((prev) => prev + 1);
+        // setStep((prev) => prev + 1);
+        // setStep((prev) => prev + 1);
+        dispatch(setStep(step + 1));
       } else if (res?.data?.length === 0) {
-        setStep("error");
+        // setStep("error");
+        dispatch(setStep("error"));
       } else if (res?.error?.data?.message === "Distance is more than 100") {
         setWarning(true);
       } else if (res?.error?.data?.message === "No matched users") {
-        setStep("error");
+        dispatch(setStep("error"));
       } else {
-        setStep("error");
+        dispatch(setStep("error"));
       }
     });
   };
@@ -139,7 +143,7 @@ const ChildCare = () => {
     setOffers([]);
     setLookfor([]);
     dispatch(setCity(""));
-    setStep(0);
+    dispatch(setStep(0));
     setWarning(false);
   };
 
@@ -380,10 +384,7 @@ const ChildCare = () => {
         {/* search result */}
 
         {(step === 1 || step === 2) && (
-          <SearchResult
-            setStep={setStep}
-            handleSearchAgain={handleSearchAgain}
-          />
+          <SearchResult handleSearchAgain={handleSearchAgain} />
         )}
 
         {step === "error" && (

@@ -3,7 +3,10 @@ import styles from "@/styles/Footer.module.css";
 import footerLogo from "../../public/assets/footer-logo.png";
 import Link from "next/link";
 import { useDispatch } from "react-redux";
-import { setCity } from "@/features/childCareSearch/childCareSearchSlice";
+import {
+  setCity,
+  setStep,
+} from "@/features/childCareSearch/childCareSearchSlice";
 import { useRouter } from "next/router";
 
 const Footer = () => {
@@ -200,6 +203,7 @@ const Footer = () => {
   const handleClick = (city) => {
     if (city) {
       dispatch(setCity(city));
+      dispatch(setStep(0));
       push(`/child-care?location=${city}`);
     }
   };
