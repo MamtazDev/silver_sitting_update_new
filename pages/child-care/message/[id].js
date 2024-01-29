@@ -131,15 +131,17 @@ const Chatting = () => {
       reciverId: id,
     };
 
-    addConversation(data).then((res) => {
-      if (res.data) {
-        dispatch(setConversationId(res.data?._id));
-      }
-    });
+    if (!conversationId) {
+      addConversation(data).then((res) => {
+        if (res?.data) {
+          dispatch(setConversationId(res?.data?._id));
+        }
+      });
+    }
   };
 
   const handleSendMessage = () => {
-    if (user) {
+    if (user && conversationId) {
       if (inputMessage.trim() !== "") {
         const data = {
           conversationId,
@@ -206,12 +208,12 @@ const Chatting = () => {
   }, [message]);
 
   useEffect(() => {
-    if (isSuccess && !data && user) {
+    if (isSuccess && !data?._id && user && !conversationId) {
       createConversation();
     } else if (isSuccess && data && user) {
       dispatch(setConversationId(data?._id));
     }
-  }, [isSuccess, user]);
+  }, [isSuccess, user, data, conversationId]);
 
   useEffect(() => {
     scrollToBottom();

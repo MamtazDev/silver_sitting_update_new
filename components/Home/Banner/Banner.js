@@ -7,7 +7,10 @@ import arrow from "../../../public/assets/icons/arrow.png";
 import Link from "next/link";
 import { useDispatch } from "react-redux";
 import { setStepControll } from "@/features/register/registerSlice";
-import { setCity } from "@/features/childCareSearch/childCareSearchSlice";
+import {
+  setCity,
+  setStep,
+} from "@/features/childCareSearch/childCareSearchSlice";
 import { useRouter } from "next/router";
 
 const Banner = ({ t }) => {
@@ -29,6 +32,7 @@ const Banner = ({ t }) => {
     event.preventDefault();
     const city = event.target.residance.value;
     dispatch(setCity(city));
+    dispatch(setStep(0));
     router.push(`/child-care?location=${city}`);
   };
   return (

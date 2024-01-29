@@ -123,6 +123,7 @@ const ChildCare = () => {
       // console.log(res);
       if (res?.data?.length > 0) {
         dispatch(setChildCarerFilterData(res?.data));
+        router?.push(`/child-care?location=${city}`);
         // setStep((prev) => prev + 1);
         // setStep((prev) => prev + 1);
         dispatch(setStep(step + 1));
